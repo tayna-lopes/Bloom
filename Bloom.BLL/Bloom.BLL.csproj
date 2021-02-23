@@ -9,9 +9,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Enums\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
 
 </Project>
