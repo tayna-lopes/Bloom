@@ -27,7 +27,11 @@ namespace Bloom.Application.AppServices
             {
                 Sucesso = true
             };
-
+            if (!_usuarioService.ValidarUsername(model.Username))
+            {
+                resposta.Resultado = "Username já existe";
+                resposta.Sucesso = false;
+            }
             if (model.Email == null || model.Nome == null || model.Senha == null ||
                 model.Email == string.Empty || model.Nome == string.Empty || model.Senha == string.Empty)
             {
@@ -48,6 +52,7 @@ namespace Bloom.Application.AppServices
             try
             {
                 var userId = Guid.NewGuid();
+
                 Usuario user = new Usuario
                 {
                     UsuarioId = userId,
@@ -55,7 +60,12 @@ namespace Bloom.Application.AppServices
                     Alterado = DateTimeUtil.UtcToBrasilia(),
                     Nome = model.Nome,
                     Email = model.Email.ToLower(),
-                    Senha = SHA2.GenerateHash(model.Senha, userId.ToString())
+                    Senha = SHA2.GenerateHash(model.Senha, userId.ToString()),
+                    Username = model.Username,
+                    Cidade = model.Cidade,
+                    Estado = model.Estado,
+                    DataDeNascimento = model.DataDeNascimento,
+                    IsAdmin = model.IsAdmin
                 };
 
                 _usuarioService.Add(user);
@@ -86,8 +96,7 @@ namespace Bloom.Application.AppServices
                 var returnModel = new AuthenticationModel
                 {
                     UserId = user.UsuarioId.ToString(),
-                    Nome = user.Nome,
-                    Email = user.Email
+                    Nome = user.Nome
                 };
 
                 resposta.Sucesso = true;
@@ -97,7 +106,7 @@ namespace Bloom.Application.AppServices
 
             if (user == null)
             {
-                resposta.Resultado = "Email nao cadastrado. Por favor, verifique se já se cadastrou no Goper e tente novamente.";
+                resposta.Resultado = "Email não cadastrado. Por favor, verifique se já se cadastrou no Bloom e tente novamente, pois sei que você vai querer ser uma de nós";
                 return resposta;
             }
             resposta.Resultado = "Login não autorizado";

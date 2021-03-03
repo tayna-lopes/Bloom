@@ -24,6 +24,19 @@ namespace Bloom.DAO.Repositories
         {
             return _usuarios.Where(x => x.Email == email).FirstOrDefault();
         }
+
+        public bool ValidarUsername(string username)
+        {
+            List<Usuario> usuarios = _usuarios.Where(x => x.Username == username).ToList();
+            if (usuarios.Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     
     }
 }

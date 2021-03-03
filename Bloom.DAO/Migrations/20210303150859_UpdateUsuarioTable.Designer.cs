@@ -4,14 +4,16 @@ using Bloom.DAO.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bloom.DAO.Migrations
 {
     [DbContext(typeof(BloomContext))]
-    partial class BloomContextModelSnapshot : ModelSnapshot
+    [Migration("20210303150859_UpdateUsuarioTable")]
+    partial class UpdateUsuarioTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,10 +37,6 @@ namespace Bloom.DAO.Migrations
                     b.Property<string>("Cidade");
 
                     b.Property<DateTime>("Criado")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
-                    b.Property<DateTime>("DataDeNascimento")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 

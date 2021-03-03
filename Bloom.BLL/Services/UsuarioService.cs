@@ -20,7 +20,6 @@ namespace Bloom.BLL.Services
         {
             return _usuarioRepository.GetByEmail(email);
         }
-
         public bool ValidarUsuario(string usuarioId)
         {
             if (GuidUtil.IsGuidValid(usuarioId))
@@ -30,6 +29,10 @@ namespace Bloom.BLL.Services
                 return user != null ? true : false;
             }
             return false;
+        }
+        public bool ValidarUsername(string username)
+        {
+            return _usuarioRepository.ValidarUsername(username);
         }
     }
 }
