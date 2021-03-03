@@ -19,7 +19,7 @@ namespace Bloom.Controllers
             _authenticationAppService = authenticationAppService;
         }
     
-
+        //Login
         /// <summary>
         /// Novo Usuario
         /// </summary>
@@ -62,6 +62,45 @@ namespace Bloom.Controllers
         {
             var validar = _authenticationAppService.ValidarUsuario(model);
             var resposta = _authenticationAppService.Login(model);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        //Perfil
+        /// <summary>
+        /// Retorna as informações do usuário
+        /// </summary>
+        /// <returns>Token de autenticação</returns>
+        /// <response code="200">Token</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("Perfil/GetInformacoesUser")]
+        public IActionResult GetInformacoesUser(string userEmail)
+        {
+            var resposta = _authenticationAppService.GetInformacoesUser(userEmail);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        } 
+        
+        /// <summary>
+        /// Atualiza as informações do usuário
+        /// </summary>
+        /// <returns>Token de autenticação</returns>
+        /// <response code="200">Token</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpPost]
+        [Route("Perfil/AtualizarUsuario")]
+        public IActionResult AtualizarUsuario([FromBody] UpdateUserModel model)
+        {
+            var resposta = _authenticationAppService.AtualizarUsuario(model);
             if (resposta.Sucesso)
             {
                 return Ok(resposta);

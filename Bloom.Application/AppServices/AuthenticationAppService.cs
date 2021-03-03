@@ -125,5 +125,84 @@ namespace Bloom.Application.AppServices
             resposta.Resultado = authenticationModel;
             return resposta;
         }
+
+        //Perfil
+        public ResponseUtil GetInformacoesUser(string userEmail)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                Usuario user = _usuarioService.GetByEmail(userEmail);
+                if(user == null)
+                {
+                    resposta.Resultado = "Este usuário não existe";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+
+                resposta.Resultado = user;
+                resposta.Sucesso = true;
+                return resposta;
+            }
+            catch(Exception e)
+            {
+                resposta.Resultado = e;
+                return resposta;
+            }
+        }
+        public ResponseUtil AtualizarUsuario(UpdateUserModel model)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                Usuario user = _usuarioService.GetByEmail(model.userEmail);
+                if (user == null)
+                {
+                    resposta.Resultado = "Este usuário não existe";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+
+                if(model.Nome != null)
+                {
+                    user.Nome = model.Nome;
+                }
+                if (model.Username != null)
+                {
+                    if (!_usuarioService.ValidarUsername(model.Username))
+                    {
+                        resposta.Resultado = "Este username já está sendo usado";
+                        resposta.Sucesso = false;
+                        return resposta;
+                    }
+                    else
+                    {
+                        user.Username = model.Username;
+                    }
+                }
+                if(model.Estado != null)
+                {
+                    user.Estado = model.Estado;
+                }
+                if (model.Cidade != null)
+                {
+                    user.Cidade = model.Cidade;
+                }
+                if(model.DataDeNascimento != null)
+                {
+                    user.DataDeNascimento = model.DataDeNascimento;
+                }
+                _usuarioService.Edit(user);
+
+                resposta.Resultado = user;
+                resposta.Sucesso = true;
+                return resposta;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                return resposta;
+            }
+        }
     }
 }
