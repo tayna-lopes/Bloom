@@ -1,4 +1,6 @@
-﻿using Bloom.BLL.RepositoriesInterfaces;
+﻿using Bloom.Application.AppServices;
+using Bloom.Application.AppServicesInterfaces;
+using Bloom.BLL.RepositoriesInterfaces;
 using Bloom.BLL.Services;
 using Bloom.BLL.ServicesInterfaces;
 using Bloom.DAO.Context;
@@ -21,15 +23,15 @@ namespace Bloom.IOC
             });
 
             //AppService
-            //EX - services.AddScoped<IProgramAppService, ProgramAppService>();
+            services.AddScoped<IAuthenticationAppService, AuthenticationAppService>();
 
             //Service
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
-            //EX - services.AddScoped<IProgramService, ProgramService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
 
             //Repository
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-            //EX - services.AddScoped<IProgramRepository, ProgramRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
         }
     }

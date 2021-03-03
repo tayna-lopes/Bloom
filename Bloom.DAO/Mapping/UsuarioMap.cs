@@ -28,6 +28,12 @@ namespace Bloom.DAO.Mapping
             builder.Property(x => x.Email);
             builder.Property(x => x.Senha);
             builder.Property(x => x.Nome);
+            builder.Property(x => x.Username);
+            builder.Property(x => x.Cidade);
+            builder.Property(x => x.Estado);
+            builder.Property(x => x.IsAdmin);
+            builder.Property(x => x.DataDeNascimento)
+                .HasDefaultValue(new DateTime(2010, 1, 1));
         }
     }
 }

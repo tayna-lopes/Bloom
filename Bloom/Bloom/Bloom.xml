@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bloom</name>
+    </assembly>
+    <members>
+        <member name="M:Bloom.Controllers.AuthenticationController.NovoUsuario(Bloom.Application.Models.NovoUsuarioModel)">
+            <summary>
+            Novo Usuario
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AuthenticationController.Index(Bloom.Application.Models.LoginModel)">
+            <summary>
+            Login de usuário.
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AuthenticationController.GetInformacoesUser(System.String)">
+            <summary>
+            Retorna as informações do usuário
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AuthenticationController.AtualizarUsuario(Bloom.Application.Models.UpdateUserModel)">
+            <summary>
+            Atualiza as informações do usuário
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+    </members>
+</doc>

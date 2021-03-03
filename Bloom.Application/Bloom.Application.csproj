@@ -11,15 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AppServices\" />
-    <Folder Include="AppServicesInterfaces\" />
-    <Folder Include="Models\" />
     <Folder Include="Validation\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Bloom.BLL\Bloom.BLL.csproj" />
     <ProjectReference Include="..\Bloom.DAO\Bloom.DAO.csproj" />
+    <ProjectReference Include="..\Cryptography\Cryptography.csproj" />
   </ItemGroup>
 
 </Project>
