@@ -52,7 +52,7 @@ namespace Bloom
 
             services.AddSwaggerGen(s =>
             {
-                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Bloom", Version = "v1" });
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Hex by Bloom", Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -73,7 +73,7 @@ namespace Bloom
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bloom");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hex");
                 c.RoutePrefix = string.Empty;
             });
 

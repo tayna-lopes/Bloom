@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20210223215438_Initial.Designer.cs" />
     <Compile Remove="Migrations\20210223215557_initial.cs" />
     <Compile Remove="Migrations\20210223215557_initial.Designer.cs" />
+    <Compile Remove="Migrations\20210327171404_FilmeMapping.cs" />
+    <Compile Remove="Migrations\20210327171404_FilmeMapping.Designer.cs" />
+    <Compile Remove="Migrations\20210327184154_Tabelas.cs" />
+    <Compile Remove="Migrations\20210327184154_Tabelas.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
