@@ -7,5 +7,8 @@ namespace Bloom.BLL.RepositoriesInterfaces
 {
     public interface IFilmeRepository : IRepositoryBase<Filme>
     {
+        Filme GetByName(string nome);
+        List<Filme> GetAllFilmesByUsuarioId(Guid UsuarioId);
+        List<Filme> GetAdicionadosRecentemente();
     }
 }

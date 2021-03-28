@@ -19,5 +19,18 @@ namespace Bloom.DAO.Repositories
         {
             _filmes = _context.Filmes;
         }
+        public Filme GetByName(string nome)
+        {
+            return _filmes.Where(x => x.Titulo == nome).FirstOrDefault();
+        }
+        public List<Filme> GetAllFilmesByUsuarioId(Guid UsuarioId)
+        {
+            return _filmes.Where(x => x.UsuarioId == UsuarioId).ToList();
+        }
+        public List<Filme> GetAdicionadosRecentemente()
+        {
+            var sday = DateTime.Now.Date.AddDays(-10);
+            return _filmes.Where(x => x.Adicionado.Date == sday).ToList();
+        }
     }
 }

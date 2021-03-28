@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace Bloom.Controllers
 {
     [Route("api/[controller]")]
-    public class FilmeAppService : ControllerBase
+    public class SerieController : ControllerBase
     {
-        private readonly IFilmeAppService _filmeAppService;
+        private readonly ILivroAppService _livroAppService;
 
-        public FilmeAppService(IFilmeAppService filmeAppService)
+        public SerieController(ILivroAppService livroAppService)
         {
-            _filmeAppService = filmeAppService;
+            _livroAppService = livroAppService;
         }
     }
 }

@@ -4,14 +4,16 @@ using Bloom.DAO.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bloom.DAO.Migrations
 {
     [DbContext(typeof(BloomContext))]
-    partial class BloomContextModelSnapshot : ModelSnapshot
+    [Migration("20210328171525_Curtidas")]
+    partial class Curtidas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,10 +138,6 @@ namespace Bloom.DAO.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Adicionado")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
                     b.Property<int>("Ano");
 
                     b.Property<double>("Classificacao");
@@ -176,10 +174,6 @@ namespace Bloom.DAO.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Adicionado")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
                     b.Property<int>("Ano");
 
                     b.Property<string>("Autores");
@@ -215,10 +209,6 @@ namespace Bloom.DAO.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Adicionado")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
                     b.Property<int>("Ano");
 

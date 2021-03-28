@@ -18,6 +18,7 @@ namespace Bloom.BLL.Entities
         public Genero Genero { get; set; }
         public Guid UsuarioId { get; set; }
         public StatusAvaliacao Status { get; set; }
+        public DateTime Adicionado { get; set; }
 
         public virtual Usuario Usuario { get; set; }
     }

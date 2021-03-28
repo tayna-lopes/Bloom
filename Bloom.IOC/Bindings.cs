@@ -24,14 +24,35 @@ namespace Bloom.IOC
 
             //AppService
             services.AddScoped<IAuthenticationAppService, AuthenticationAppService>();
+            services.AddScoped<IAmizadeAppService, AmizadeAppService>();
+            services.AddScoped<IAvaliacaoAppService, AvaliacaoAppService>();
+            services.AddScoped<ICurtidaAppService, CurtidaAppService>();
+            services.AddScoped<IComentarioAppService, ComentarioAppService>();
+            services.AddScoped<IFilmeAppService, FilmeAppService>();
+            services.AddScoped<ILivroAppService, LivroAppService>();
+            services.AddScoped<ISerieAppService, SerieAppService>();
 
             //Service
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IAmizadeService, AmizadeService>();
+            services.AddScoped<IAvaliacaoService, AvaliacaoService>();
+            services.AddScoped<ICurtidaService, CurtidaService>();
+            services.AddScoped<IComentarioService, ComentarioService>();
+            services.AddScoped<IFilmeService, FilmeService>();
+            services.AddScoped<ILivroService, LivroService>();
+            services.AddScoped<ISerieService, SerieService>();
 
             //Repository
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IAmizadeRepository, AmizadeRepository>();
+            services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+            services.AddScoped<IComentarioRepository, ComentarioRepository>();
+            services.AddScoped<ICurtidasRepository, CurtidaRepository>();
+            services.AddScoped<IFilmeRepository, FilmeRepository>();
+            services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<ISerieRepository, SerieRepository>();
 
         }
     }

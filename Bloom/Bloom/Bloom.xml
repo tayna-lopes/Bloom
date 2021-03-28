@@ -36,5 +36,53 @@
             <response code="200">Token</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.FilmeController.CriarFilme(Bloom.Application.Models.CriarFilmeModel)">
+            <summary>
+            Novo Filme
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.FilmeController.AtualizarFilme(Bloom.Application.Models.AtualizarFilmeModel)">
+            <summary>
+            Atualizar Filme
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.FilmeController.GetAllFilmes">
+            <summary>
+            Buscar todos os Filmes
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.FilmeController.GetAllFilmesUsuario(System.Guid)">
+            <summary>
+            Buscar todos os Filmes cadastrados por um usuário
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.FilmeController.GetAdicionadosRecentemente">
+            <summary>
+            Buscar todos os Filmes adicionados recentemente
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.FilmeController.DeletarFilme(System.Guid)">
+            <summary>
+            Deletar filme
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
     </members>
 </doc>

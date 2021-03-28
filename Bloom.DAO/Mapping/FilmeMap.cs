@@ -32,6 +32,9 @@ namespace Bloom.DAO.Mapping
                     x => x.ToString(),
                     x => (StatusAvaliacao)Enum.Parse(typeof(StatusAvaliacao), x))
                 .HasDefaultValue(StatusAvaliacao.Pendente);
+            builder.Property(t => t.Adicionado)
+              .IsRequired()
+              .HasDefaultValue(new DateTime(2010, 1, 1));
         }
     }
 }
