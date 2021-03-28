@@ -23,6 +23,7 @@ namespace Bloom.DAO.Context
             modelBuilder.Entity<Avaliacao>(new AvaliacaoMap().Configure);
             modelBuilder.Entity<Comentario>(new ComentarioMap().Configure);
             modelBuilder.Entity<Amizade>(new AmizadeMap().Configure);
+            modelBuilder.Entity<Curtida>(new CurtidaMap().Configure);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
@@ -32,5 +33,6 @@ namespace Bloom.DAO.Context
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Comentario> Comentarios { get; set; }
         public DbSet<Amizade> Amizades { get; set; }
+        public DbSet<Curtida> Curtidas { get; set; }
     }
 }
