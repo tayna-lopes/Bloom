@@ -19,5 +19,19 @@ namespace Bloom.DAO.Repositories
         {
             _livros = _context.Livros;
         }
+
+        public Livro GetByName(string nome)
+        {
+            return _livros.Where(x => x.Titulo == nome).FirstOrDefault();
+        }
+        public List<Livro> GetAllLivrosByUsuarioId(Guid UsuarioId)
+        {
+            return _livros.Where(x => x.UsuarioId == UsuarioId).ToList();
+        }
+        public List<Livro> GetAdicionadosRecentemente()
+        {
+            var sday = DateTime.Now.Date.AddDays(-10);
+            return _livros.Where(x => x.Adicionado.Date == sday).ToList();
+        }
     }
 }

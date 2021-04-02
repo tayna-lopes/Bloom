@@ -84,5 +84,101 @@
             <response code="200">bool</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.LivroController.CriarLivro(Bloom.Application.Models.CriarLivroModel)">
+            <summary>
+            Novo livro
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.LivroController.AtualizarLivro(Bloom.Application.Models.AtualizarLivroModel)">
+            <summary>
+            Atualizar Livro
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.LivroController.DeletarLivro(System.Guid)">
+            <summary>
+            Deletar livro
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.LivroController.GetAllFilmes">
+            <summary>
+            Buscar todos os Livros
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.LivroController.GetAllFilmesUsuario(System.Guid)">
+            <summary>
+            Buscar todos os livros cadastrados por um usuário
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.LivroController.GetAdicionadosRecentemente">
+            <summary>
+            Buscar todos os Livros adicionados recentemente
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.SerieController.CriarSerie(Bloom.Application.Models.CriarSerieModel)">
+            <summary>
+            Nova serie
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.SerieController.AtualizarSerie(Bloom.Application.Models.AtualizarSerieModel)">
+            <summary>
+            Atualizar serie
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.SerieController.DeletarSerie(System.Guid)">
+            <summary>
+            Deletar serie
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.SerieController.GetAllSeries">
+            <summary>
+            Buscar todas as series
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.SerieController.GetAllSeriesUsuario(System.Guid)">
+            <summary>
+            Buscar todas as series cadastrados por um usuário
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.SerieController.GetAdicionadosRecentemente">
+            <summary>
+            Buscar todas as series adicionados recentemente
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
     </members>
 </doc>

@@ -7,5 +7,8 @@ namespace Bloom.BLL.ServicesInterfaces
 {
     public interface ILivroService: IServiceBase<Livro>
     {
+        Livro GetByName(string nome);
+        List<Livro> GetAllLivrosByUsuarioId(Guid UsuarioId);
+        List<Livro> GetAdicionadosRecentemente();
     }
 }

@@ -7,5 +7,8 @@ namespace Bloom.BLL.RepositoriesInterfaces
 {
     public interface ILivroRepository : IRepositoryBase<Livro>
     {
+        Livro GetByName(string nome);
+        List<Livro> GetAllLivrosByUsuarioId(Guid UsuarioId);
+        List<Livro> GetAdicionadosRecentemente();
     }
 }

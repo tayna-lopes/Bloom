@@ -1,6 +1,7 @@
 ﻿using Bloom.Application.AppServicesInterfaces;
 using Bloom.Application.Models;
 using Bloom.BLL.Entities;
+using Bloom.BLL.Enums;
 using Bloom.BLL.ServicesInterfaces;
 using Bloom.BLL.Utils;
 using Cryptography;
@@ -14,11 +15,303 @@ namespace Bloom.Application.AppServices
     public class SerieAppService: ISerieAppService
     {
         private readonly ISerieService _serieService;
+        private readonly IUsuarioService _usuarioService;
 
-        public SerieAppService(ISerieService serieService)
+        public SerieAppService(ISerieService serieService, IUsuarioService usuarioService)
         {
             _serieService = serieService;
+            _usuarioService = usuarioService;
 
+        }
+        public ResponseUtil CriarSerie(CriarSerieModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var show = _serieService.GetByName(model.Titulo);
+                if (show != null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Esta serie já está cadastrado";
+                    return resposta;
+                };
+                var elenco = String.Join(", ", model.Elenco);
+                Serie serie = new Serie
+                {
+                    Id = Guid.NewGuid(),
+                    UsuarioId = model.UsuarioId,
+                    Titulo = model.Titulo,
+                    Diretor = model.Diretor,
+                    Elenco = elenco,
+                    Pais = model.Pais,
+                    Ano = model.Ano,
+                    NumeroDeTemporadas = model.NumeroDeTemporadas,
+                    Classificacao = model.Classificacao,
+                    Genero = model.Genero,
+                    Status = StatusAvaliacao.Pendente,
+                    Adicionado = DateTimeUtil.UtcToBrasilia()
+                };
+                _serieService.Add(serie);
+
+                resposta.Sucesso = true;
+                resposta.Resultado = serie.Id;
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
+        }
+        public ResponseUtil AtualizarSerie(AtualizarSerieModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var serie = _serieService.GetByName(model.Titulo);
+                if (serie == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Esta serie não está cadastrado";
+                    return resposta;
+                };
+
+
+                if (model.Titulo != null)
+                {
+                    serie.Titulo = model.Titulo;
+                }
+                if (model.Elenco != null)
+                {
+                    var elenco = String.Join(", ", model.Elenco);
+                    serie.Elenco = elenco;
+                }
+                if (model.Pais != null)
+                {
+                    serie.Pais = model.Pais;
+                }
+                if (model.Ano != serie.Ano)
+                {
+                    serie.Ano = model.Ano;
+                }
+                if (model.Diretor != null)
+                {
+                    serie.Diretor = model.Diretor;
+                }
+                if (model.Genero != serie.Genero)
+                {
+                    serie.Genero = model.Genero;
+                }
+                if (model.NumeroDeTemporadas != serie.NumeroDeTemporadas)
+                {
+                    serie.NumeroDeTemporadas = model.NumeroDeTemporadas;
+                }
+                _serieService.Edit(serie);
+
+                resposta.Sucesso = true;
+                resposta.Resultado = serie.Id;
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetById(Guid SerieId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var serie = _serieService.GetById(SerieId);
+                if (serie == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Esta serie não está cadastrado";
+                    return resposta;
+                };
+
+                Usuario usuario = _usuarioService.GetById(serie.UsuarioId);
+
+                SerieResponse serieResponse = new SerieResponse
+                {
+                    Diretor = serie.Diretor,
+                    Ano = serie.Ano,
+                    Elenco = serie.Elenco,
+                    Titulo = serie.Titulo,
+                    Genero = serie.Genero,
+                    Pais = serie.Pais,
+                    Username = usuario.Username,
+                    NumeroDeTemporadas = serie.NumeroDeTemporadas,
+                    Id = serie.Id
+                };
+
+                resposta.Sucesso = true;
+                resposta.Resultado = serieResponse;
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetAllSeriess()
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var series = _serieService.GetAll();
+                if (series == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Nenhuma serie cadastrado";
+                    return resposta;
+                };
+
+                List<SerieResponse> seriesResponses = new List<SerieResponse>();
+                foreach (var serie in series)
+                {
+                    if (serie.Status == StatusAvaliacao.Aprovado)
+                    {
+                        Usuario usuario = _usuarioService.GetById(serie.UsuarioId);
+                        SerieResponse serieResponse = new SerieResponse
+                        {
+                            Diretor = serie.Diretor,
+                            Ano = serie.Ano,
+                            Elenco = serie.Elenco,
+                            Titulo = serie.Titulo,
+                            Genero = serie.Genero,
+                            Pais = serie.Pais,
+                            Username = usuario.Username,
+                            NumeroDeTemporadas = serie.NumeroDeTemporadas,
+                            Classificacao = serie.Classificacao,
+                            Id = serie.Id
+                        };
+                        seriesResponses.Add(serieResponse);
+                    }
+
+                }
+                resposta.Sucesso = true;
+                resposta.Resultado = seriesResponses;
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetAdicionadosRecentemente()
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var series = _serieService.GetAdicionadosRecentemente();
+                if (series == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Nenhuma serie cadastrado";
+                    return resposta;
+                };
+
+                List<SerieResponse> seriesResponses = new List<SerieResponse>();
+                foreach (var serie in series)
+                {
+                    if (serie.Status == StatusAvaliacao.Aprovado)
+                    {
+                        Usuario usuario = _usuarioService.GetById(serie.UsuarioId);
+                        SerieResponse serieResponse = new SerieResponse
+                        {
+                            Diretor = serie.Diretor,
+                            Ano = serie.Ano,
+                            Elenco = serie.Elenco,
+                            Titulo = serie.Titulo,
+                            Genero = serie.Genero,
+                            Pais = serie.Pais,
+                            Username = usuario.Username,
+                            NumeroDeTemporadas = serie.NumeroDeTemporadas,
+                            Classificacao = serie.Classificacao,
+                            Id = serie.Id
+                        };
+                        seriesResponses.Add(serieResponse);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetAllSeriesByUser(Guid UsuarioId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var series = _serieService.GetAllSeriesByUsuarioId(UsuarioId);
+                if (series == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Nenhuma serie cadastrado";
+                    return resposta;
+                };
+
+                List<SerieResponse> seriesResponses = new List<SerieResponse>();
+                foreach (var serie in series)
+                {
+                    if (serie.Status == StatusAvaliacao.Aprovado)
+                    {
+                        Usuario usuario = _usuarioService.GetById(serie.UsuarioId);
+                        SerieResponse serieResponse = new SerieResponse
+                        {
+                            Diretor = serie.Diretor,
+                            Ano = serie.Ano,
+                            Elenco = serie.Elenco,
+                            Titulo = serie.Titulo,
+                            Genero = serie.Genero,
+                            Pais = serie.Pais,
+                            Username = usuario.Username,
+                            NumeroDeTemporadas = serie.NumeroDeTemporadas,
+                            Classificacao = serie.Classificacao,
+                            Id = serie.Id
+                        };
+                        seriesResponses.Add(serieResponse);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
+        }
+        public ResponseUtil DeletarSerie(Guid SerieId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                var serie = _serieService.GetById(SerieId);
+                if (serie == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Este esta serie não está cadastrado";
+                    return resposta;
+                };
+
+                _serieService.Remove(serie);
+
+                resposta.Sucesso = true;
+                resposta.Resultado = "Serie excluida";
+            }
+            catch (Exception e)
+            {
+                resposta.Sucesso = false;
+                resposta.Resultado = e.Message;
+            }
+            return resposta;
         }
     }
 }

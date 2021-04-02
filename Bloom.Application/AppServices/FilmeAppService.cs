@@ -88,11 +88,15 @@ namespace Bloom.Application.AppServices
                 {
                     filme.Pais = model.Pais;
                 }
-                if (model.Ano != null)
+                if (model.Ano != filme.Ano)
                 {
                     filme.Ano = model.Ano;
                 }
-                if (model.Genero != null)
+                if (model.Diretor != null)
+                {
+                    filme.Diretor = model.Diretor;
+                }
+                if (model.Genero != filme.Genero)
                 {
                     filme.Genero = model.Genero;
                 }

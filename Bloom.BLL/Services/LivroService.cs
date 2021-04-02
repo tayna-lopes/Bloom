@@ -16,5 +16,20 @@ namespace Bloom.BLL.Services
         {
             _livroRepository = livroRepository;
         }
+
+        public List<Livro> GetAdicionadosRecentemente()
+        {
+            return _livroRepository.GetAdicionadosRecentemente();
+        }
+
+        public List<Livro> GetAllLivrosByUsuarioId(Guid UsuarioId)
+        {
+            return _livroRepository.GetAllLivrosByUsuarioId(UsuarioId);
+        }
+
+        public Livro GetByName(string nome)
+        {
+            return _livroRepository.GetByName(nome);
+        }
     }
 }

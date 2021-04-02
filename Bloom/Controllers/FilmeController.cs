@@ -122,9 +122,9 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpDelete]
         [Route("DeletarFilme")]
-        public IActionResult DeletarFilme(Guid UsuarioId)
+        public IActionResult DeletarFilme(Guid livroId)
         {
-            var resposta = _filmeAppService.DeletarFilme(UsuarioId);
+            var resposta = _filmeAppService.DeletarFilme(livroId);
             if (resposta.Sucesso)
             {
                 return Ok(resposta);

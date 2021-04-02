@@ -16,5 +16,20 @@ namespace Bloom.BLL.Services
         {
             _serieRepository = serieRepository;
         }
+
+        public List<Serie> GetAdicionadosRecentemente()
+        {
+            return _serieRepository.GetAdicionadosRecentemente();
+        }
+
+        public List<Serie> GetAllSeriesByUsuarioId(Guid UsuarioId)
+        {
+            return _serieRepository.GetAllSeriesByUsuarioId(UsuarioId);
+        }
+
+        public Serie GetByName(string nome)
+        {
+            return _serieRepository.GetByName(nome);
+        }
     }
 }
