@@ -13,11 +13,183 @@ namespace Bloom.Application.AppServices
     public class AmizadeAppService: IAmizadeAppService
     {
         private readonly IAmizadeService _amizadeService;
+        private readonly IUsuarioService _usuarioService;
 
-        public AmizadeAppService(IAmizadeService amizadeService)
+        public AmizadeAppService(IAmizadeService amizadeService, IUsuarioService usuarioService)
         {
             _amizadeService = amizadeService;
+            _usuarioService = usuarioService;
+        }
 
+        public ResponseUtil Convite(ConviteModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                Usuario convidante = _usuarioService.GetByUsername(model.ConvidanteUsername);
+                if(convidante == null)
+                {
+                    resposta.Resultado = "Usuario não encontrado";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                Usuario convidado = _usuarioService.GetByUsername(model.ConvidadoUsername);
+                if (convidado == null)
+                {
+                    resposta.Resultado = "Usuario não encontrado";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                Amizade amizade = new Amizade
+                {
+                    Id = Guid.NewGuid(),
+                    ConvidanteId = convidante.UsuarioId,
+                    ConvidadoId = convidado.UsuarioId,
+                    Status = StatusAmizade.Pendente
+                };
+
+                _amizadeService.Add(amizade);
+
+                resposta.Resultado = amizade.Id;
+                resposta.Sucesso = true;
+            }
+            catch(Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Resultado = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil AceitarRecusarConvite(ConviteModel model, bool AceitarAmizade)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                Usuario convidante = _usuarioService.GetByUsername(model.ConvidanteUsername);
+                if (convidante == null)
+                {
+                    resposta.Resultado = "Usuario não encontrado";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                Usuario convidado = _usuarioService.GetByUsername(model.ConvidadoUsername);
+                if (convidado == null)
+                {
+                    resposta.Resultado = "Usuario não encontrado";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                Amizade amizade = _amizadeService.GetAmizadeByAmigosId(convidado.UsuarioId, convidante.UsuarioId);
+                if (amizade == null)
+                {
+                    resposta.Resultado = "Amizade não encontrada";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                if (AceitarAmizade)
+                {
+                    amizade.Status = StatusAmizade.Aceita;
+                }
+                else
+                {
+                    amizade.Status = StatusAmizade.Recusada;
+                }
+
+                _amizadeService.Edit(amizade);
+
+                resposta.Resultado = "Amizade " + amizade.Status;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Resultado = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil DesfazerAmizade(ConviteModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                Usuario convidante = _usuarioService.GetByUsername(model.ConvidanteUsername);
+                if (convidante == null)
+                {
+                    resposta.Resultado = "Usuario não encontrado";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                Usuario convidado = _usuarioService.GetByUsername(model.ConvidadoUsername);
+                if (convidado == null)
+                {
+                    resposta.Resultado = "Usuario não encontrado";
+                    resposta.Resultado = false;
+                    return resposta;
+                }
+
+                Amizade amizade = _amizadeService.GetAmizadeByAmigosId(convidado.UsuarioId, convidante.UsuarioId);
+
+                _amizadeService.Remove(amizade);
+
+                resposta.Resultado = "Amizade desfeita";
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Resultado = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetMeusAmigos(Guid UsuarioId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Amizade> MeusAmigosList = _amizadeService.GetMeusAmigos(UsuarioId);
+                if(MeusAmigosList.Count == 0)
+                {
+                    resposta.Resultado = "Você ainda não tem nenhum amigo";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+                resposta.Resultado = MeusAmigosList;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Resultado = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetMinhasSolicitacoesDeAmizade(Guid UsuarioId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Amizade> MinhasSolicitacoesList = _amizadeService.GetMeusConvitesDeAmizade(UsuarioId);
+                if (MinhasSolicitacoesList.Count == 0)
+                {
+                    resposta.Resultado = "Você bão tem nenhuma solicitação de amizade";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+                resposta.Resultado = MinhasSolicitacoesList;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Resultado = false;
+            }
+            return resposta;
         }
     }
 }

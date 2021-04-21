@@ -9,5 +9,6 @@ namespace Bloom.BLL.ServicesInterfaces
     {
         List<Amizade> GetMeusAmigos(Guid UsuarioId);
         List<Amizade> GetMeusConvitesDeAmizade(Guid UsuarioId);
+        Amizade GetAmizadeByAmigosId(Guid convidadoId, Guid convidanteId);
     }
 }

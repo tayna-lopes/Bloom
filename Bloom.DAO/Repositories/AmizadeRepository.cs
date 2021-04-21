@@ -24,10 +24,13 @@ namespace Bloom.DAO.Repositories
         {
             return _amizades.Where(x => x.ConvidadoId == UsuarioId || x.ConvidanteId == UsuarioId && x.Status == StatusAmizade.Aceita).ToList();
         }
-        
         public List<Amizade> GetMeusConvitesDeAmizade(Guid UsuarioId)
         {
             return _amizades.Where(x => x.ConvidadoId == UsuarioId && x.Status == StatusAmizade.Pendente).ToList();
+        }
+        public Amizade GetAmizadeByAmigosId(Guid convidadoId, Guid convidanteId)
+        {
+            return _amizades.Where(x => x.ConvidadoId == convidadoId && x.ConvidanteId == convidanteId || x.ConvidadoId == convidanteId && x.ConvidanteId == convidadoId).FirstOrDefault();
         }
     }
 }

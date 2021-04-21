@@ -8,6 +8,7 @@ namespace Bloom.BLL.RepositoriesInterfaces
     public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
         Usuario GetByEmail(string email);
+        Usuario GetByUsername(string username);
         bool ValidarUsername(string username);
     }
 }

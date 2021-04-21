@@ -9,6 +9,7 @@ namespace Bloom.BLL.ServicesInterfaces
     {
         bool ValidarUsuario(string usuarioId);
         Usuario GetByEmail(string email);
+        Usuario GetByUsername(string username);
         bool ValidarUsername(string username);
     }
 }

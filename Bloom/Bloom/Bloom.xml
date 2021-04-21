@@ -4,6 +4,46 @@
         <name>Bloom</name>
     </assembly>
     <members>
+        <member name="M:Bloom.Controllers.AmizadeController.Convidar(Bloom.Application.Models.ConviteModel)">
+            <summary>
+            Solicitação amizade
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AmizadeController.AceitarRecusarAmizade(Bloom.Application.Models.ConviteModel,System.Boolean)">
+            <summary>
+            Aceitar ou recusar amizade
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AmizadeController.DesfazerAmizade(Bloom.Application.Models.ConviteModel)">
+            <summary>
+            Desfazer amizade
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AmizadeController.GetMeusAmigos(System.Guid)">
+            <summary>
+            Buscar meus amigos
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AmizadeController.GetMeusPedidosDeAmizade(System.Guid)">
+            <summary>
+            Buscar meus pedidos de amizade
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
         <member name="M:Bloom.Controllers.AuthenticationController.NovoUsuario(Bloom.Application.Models.NovoUsuarioModel)">
             <summary>
             Novo Usuario

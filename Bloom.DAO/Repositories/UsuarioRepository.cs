@@ -19,12 +19,14 @@ namespace Bloom.DAO.Repositories
         {
             _usuarios = _context.Usuarios;
         }
-
         public Usuario GetByEmail(string email)
         {
             return _usuarios.Where(x => x.Email == email).FirstOrDefault();
         }
-
+        public Usuario GetByUsername(string username)
+        {
+            return _usuarios.Where(x => x.Username == username).FirstOrDefault();
+        }
         public bool ValidarUsername(string username)
         {
             List<Usuario> usuarios = _usuarios.Where(x => x.Username == username).ToList();

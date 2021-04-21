@@ -20,6 +20,10 @@ namespace Bloom.BLL.Services
         {
             return _usuarioRepository.GetByEmail(email);
         }
+        public Usuario GetByUsername(string username)
+        {
+            return _usuarioRepository.GetByUsername(username);
+        }
         public bool ValidarUsuario(string usuarioId)
         {
             if (GuidUtil.IsGuidValid(usuarioId))

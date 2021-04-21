@@ -16,11 +16,14 @@ namespace Bloom.BLL.Services
             _amizadeRepository = amizadeRepository;
         }
 
+        public Amizade GetAmizadeByAmigosId(Guid convidadoId, Guid convidanteId)
+        {
+            return _amizadeRepository.GetAmizadeByAmigosId(convidadoId, convidanteId);
+        }
         public List<Amizade> GetMeusAmigos(Guid UsuarioId)
         {
             return _amizadeRepository.GetMeusAmigos(UsuarioId);
         }
-
         public List<Amizade> GetMeusConvitesDeAmizade(Guid UsuarioId)
         {
             return _amizadeRepository.GetMeusConvitesDeAmizade(UsuarioId);
