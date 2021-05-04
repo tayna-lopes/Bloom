@@ -76,6 +76,38 @@
             <response code="200">Token</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.AvaliacaoController.Convidar(Bloom.Application.Models.NovaAvaliacaoModel)">
+            <summary>
+            Avaliação de midia
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AvaliacaoController.EditarAvaliacao(Bloom.Application.Models.EditarAvaliacaoModel)">
+            <summary>
+            Editar avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AvaliacaoController.DeletarAvaliacao(Bloom.Application.Models.DeletarAvaliacaoModel)">
+            <summary>
+            Excluir avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.AvaliacaoController.GetTodasAvaliacoesMediaId(Bloom.Application.Models.GetTodasAvaliacoesMidiaModel)">
+            <summary>
+            Buscar avaliaçõess de uma midia especifica
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
         <member name="M:Bloom.Controllers.FilmeController.CriarFilme(Bloom.Application.Models.CriarFilmeModel)">
             <summary>
             Novo Filme

@@ -18,5 +18,81 @@ namespace Bloom.Controllers
         {
             _avaliacaoAppService = avaliacaoAppService;
         }
+        /// <summary>
+        /// Avaliação de midia
+        /// </summary>
+        /// <returns>Sucesso e mensagem</returns>
+        /// <response code="200">bool</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpPost]
+        [Route("NovaAvaliacao")]
+        public IActionResult Convidar([FromBody] NovaAvaliacaoModel model)
+        {
+            var resposta = _avaliacaoAppService.NovaAvaliacao(model);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Editar avaliação
+        /// </summary>
+        /// <returns>Sucesso e mensagem</returns>
+        /// <response code="200">bool</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpPost]
+        [Route("EditarAvaliacao")]
+        public IActionResult EditarAvaliacao([FromBody] EditarAvaliacaoModel model)
+        {
+            var resposta = _avaliacaoAppService.EditarAvaliacao(model);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Excluir avaliação
+        /// </summary>
+        /// <returns>Sucesso e mensagem</returns>
+        /// <response code="200">bool</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpDelete]
+        [Route("DeletarAvaliacao")]
+        public IActionResult DeletarAvaliacao([FromBody] DeletarAvaliacaoModel model)
+        {
+            var resposta = _avaliacaoAppService.DeletarAvaliacao(model);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Buscar avaliaçõess de uma midia especifica
+        /// </summary>
+        /// <returns>Sucesso e mensagem</returns>
+        /// <response code="200">bool</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetTodasAvaliacoesMediaId")]
+        public IActionResult GetTodasAvaliacoesMediaId([FromBody] GetTodasAvaliacoesMidiaModel model)
+        {
+            var resposta = _avaliacaoAppService.GetTodasAvaliacoesMediaId(model);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
     }
 }

@@ -16,6 +16,21 @@ namespace Bloom.BLL.Services
             _avaliacaoRepository = avaliacaoRepository;
         }
 
+        public List<Avaliacao> GetAvaliacaoFilmesId(Guid FilmesId)
+        {
+            return _avaliacaoRepository.GetAvaliacaoFilmesId(FilmesId);
+        }
+
+        public List<Avaliacao> GetAvaliacaoLivroId(Guid LivroId)
+        {
+            return _avaliacaoRepository.GetAvaliacaoLivroId(LivroId);
+        }
+
+        public List<Avaliacao> GetAvaliacaoSerieId(Guid SerieId)
+        {
+            return _avaliacaoRepository.GetAvaliacaoSerieId(SerieId);
+        }
+
         public List<int> GetNotasFilme(Guid FilmeId)
         {
             return _avaliacaoRepository.GetNotasFilme(FilmeId);
