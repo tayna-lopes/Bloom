@@ -127,7 +127,7 @@ namespace Bloom.Application.AppServices
                 {
                     avaliacao.Classificacao = (int)model.Classificacao;
                 }
-                if (model.Texto != string.Empty)
+                if (model.Texto != null)
                 {
                     avaliacao.Texto = model.Texto;
                 }
@@ -191,12 +191,15 @@ namespace Bloom.Application.AppServices
                     {
                         AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
                         {
+                            AvaliacaoId = x.Id,
                             UsuarioId = x.UsuarioId,
                             Classificacao = x.Classificacao,
                             Comentario = x.Texto
                         };
                         listAvaliacao.Add(avaliacaoResponse);
                     });
+                    resposta.Resultado = listAvaliacao;
+                    resposta.Sucesso = true;
                 }
                 if (model.FilmeId != null)
                 {
@@ -213,12 +216,15 @@ namespace Bloom.Application.AppServices
                     {
                         AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
                         {
+                            AvaliacaoId = x.Id,
                             UsuarioId = x.UsuarioId,
                             Classificacao = x.Classificacao,
                             Comentario = x.Texto
                         };
                         listAvaliacao.Add(avaliacaoResponse);
                     });
+                    resposta.Resultado = listAvaliacao;
+                    resposta.Sucesso = true;
                 }
                 if (model.SerieId != null)
                 {
@@ -235,12 +241,15 @@ namespace Bloom.Application.AppServices
                     {
                         AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
                         {
+                            AvaliacaoId = x.Id,
                             UsuarioId = x.UsuarioId,
                             Classificacao = x.Classificacao,
                             Comentario = x.Texto
                         };
                         listAvaliacao.Add(avaliacaoResponse);
                     });
+                    resposta.Resultado = listAvaliacao;
+                    resposta.Sucesso = true;
                 }
             }
             catch (Exception e)

@@ -1,5 +1,6 @@
 ﻿using Bloom.Application.AppServicesInterfaces;
 using Bloom.Application.Models;
+using Bloom.BLL.Enums;
 using Bloom.BLL.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -82,9 +83,22 @@ namespace Bloom.Controllers
         /// <response code="200">bool</response>
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpGet]
-        [Route("GetTodasAvaliacoesMediaId")]
-        public IActionResult GetTodasAvaliacoesMediaId([FromBody] GetTodasAvaliacoesMidiaModel model)
+        [Route("GetTodasAvaliacoesMidiaId")]
+        public IActionResult GetTodasAvaliacoesMediaId(Guid MidiaId, TipoAvaliacao TipoAvaliacao)
         {
+            GetTodasAvaliacoesMidiaModel model = new GetTodasAvaliacoesMidiaModel();
+            if (TipoAvaliacao == TipoAvaliacao.Filme)
+            {    
+                model.FilmeId = MidiaId;
+            }
+            if (TipoAvaliacao == TipoAvaliacao.Serie)
+            {
+                model.SerieId = MidiaId;
+            }
+            if (TipoAvaliacao == TipoAvaliacao.Livro)
+            {
+                model.LivroId = MidiaId;
+            }
             var resposta = _avaliacaoAppService.GetTodasAvaliacoesMediaId(model);
             if (resposta.Sucesso)
             {
