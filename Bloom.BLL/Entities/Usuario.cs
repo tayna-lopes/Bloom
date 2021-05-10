@@ -7,6 +7,7 @@ namespace Bloom.BLL.Entities
     public class Usuario : BaseEntity
     {
         public Guid UsuarioId { get; set; }
+        public string Foto { get; set; }
         public string Nome { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }

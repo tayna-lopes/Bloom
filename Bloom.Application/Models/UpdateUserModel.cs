@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Bloom.Application.Models
 {
     public class UpdateUserModel
     {
         public string userEmail { get; set; }
+        public IFormFile Foto { get; set; }
         public string Nome { get; set; }
         public string Username { get; set; }
         public string Cidade { get; set; }

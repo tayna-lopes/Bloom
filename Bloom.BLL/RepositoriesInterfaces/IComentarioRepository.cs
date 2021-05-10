@@ -7,5 +7,6 @@ namespace Bloom.BLL.RepositoriesInterfaces
 {
     public interface IComentarioRepository : IRepositoryBase<Comentario>
     {
+        List<Comentario> GetComentariosByAvaliacaoId(Guid AvaliacaoId);
     }
 }

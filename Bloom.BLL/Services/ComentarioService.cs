@@ -15,5 +15,10 @@ namespace Bloom.BLL.Services
         {
             _ComentarioRepository = ComentarioRepository;
         }
+
+        public List<Comentario> GetComentariosByAvaliacaoId(Guid AvaliacaoId)
+        {
+            return _ComentarioRepository.GetComentariosByAvaliacaoId(AvaliacaoId);
+        }
     }
 }

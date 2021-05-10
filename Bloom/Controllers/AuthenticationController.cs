@@ -98,7 +98,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("Perfil/AtualizarUsuario")]
-        public IActionResult AtualizarUsuario([FromBody] UpdateUserModel model)
+        public IActionResult AtualizarUsuario([FromForm] UpdateUserModel model)
         {
             var resposta = _authenticationAppService.AtualizarUsuario(model);
             if (resposta.Sucesso)

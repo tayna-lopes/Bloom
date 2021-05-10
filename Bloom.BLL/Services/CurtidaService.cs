@@ -15,5 +15,25 @@ namespace Bloom.BLL.Services
         {
             _CurtidasRepository = CurtidasRepository;
         }
+
+        public List<Curtida> GetCurtidasAvaliacaoId(Guid AvaliacaoId)
+        {
+            return _CurtidasRepository.GetCurtidasAvaliacaoId(AvaliacaoId);
+        }
+
+        public List<Curtida> GetCurtidasFilmesId(Guid FilmesId)
+        {
+            return _CurtidasRepository.GetCurtidasFilmesId(FilmesId);
+        }
+
+        public List<Curtida> GetCurtidasLivroId(Guid LivroId)
+        {
+            return _CurtidasRepository.GetCurtidasLivroId(LivroId);
+        }
+
+        public List<Curtida> GetCurtidasSerieId(Guid SerieId)
+        {
+            return _CurtidasRepository.GetCurtidasSerieId(SerieId);
+        }
     }
 }

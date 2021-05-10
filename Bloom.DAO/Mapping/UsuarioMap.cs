@@ -34,6 +34,7 @@ namespace Bloom.DAO.Mapping
             builder.Property(x => x.IsAdmin);
             builder.Property(x => x.DataDeNascimento)
                 .HasDefaultValue(new DateTime(2010, 1, 1));
+            builder.Property(x => x.Foto);
         }
     }
 }

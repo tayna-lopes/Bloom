@@ -108,6 +108,62 @@
             <response code="200">bool</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.ComentarioController.NovoComentario(Bloom.Application.Models.NovoComentarioModel)">
+            <summary>
+            Comentar avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.ComentarioController.EditarComentario(Bloom.Application.Models.EditarComentarioModel)">
+            <summary>
+            Editar avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.ComentarioController.DeletarComentario(Bloom.Application.Models.DeletarComentarioModel)">
+            <summary>
+            Deletar comentario
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.ComentarioController.GetAllComentariosByAvaliacaoId(System.Guid)">
+            <summary>
+            Buscar todos comentarios da avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.CurtidaController.CurtirAvaliacao(Bloom.Application.Models.CurtirAvaliacaoModel)">
+            <summary>
+            Curtir avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.CurtidaController.DescurtirAvaliacao(System.Guid)">
+            <summary>
+            Descurtir avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.CurtidaController.GetAllCurtidasByAvaliacaoId(System.Guid)">
+            <summary>
+            Buscar todas as curtidas de uma avaliação
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
         <member name="M:Bloom.Controllers.FilmeController.CriarFilme(Bloom.Application.Models.CriarFilmeModel)">
             <summary>
             Novo Filme

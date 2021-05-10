@@ -13,11 +13,126 @@ namespace Bloom.Application.AppServices
     public class ComentarioAppService : IComentarioAppService
     {
         private readonly IComentarioService _comentarioService;
-
-        public ComentarioAppService(IComentarioService comentarioService)
+        private readonly IAvaliacaoService _avaliacaoService;
+        private readonly IUsuarioService _usuarioService;
+        public ComentarioAppService(IComentarioService comentarioService, IAvaliacaoService avaliacaoService, IUsuarioService usuarioService)
         {
             _comentarioService = comentarioService;
-
+            _avaliacaoService = avaliacaoService;
+            _usuarioService = usuarioService;
+        }
+        public ResponseUtil ComentarioAvaliacao(NovoComentarioModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                Avaliacao avaliacao = _avaliacaoService.GetById(model.AvaliacaoId);
+                if (avaliacao != null)
+                {
+                    Comentario comentario = new Comentario
+                    {
+                        Id = Guid.NewGuid(),
+                        Texto = model.Texto,
+                        UsuarioId = model.UsuarioId,
+                        LivroId = avaliacao.LivroId,
+                        FilmeId = avaliacao.FilmeId,
+                        SerieId = avaliacao.SerieId,
+                        AvaliacaoId = avaliacao.Id,
+                        TipoAvaliacao = avaliacao.TipoAvaliacao
+                    };
+                    _comentarioService.Add(comentario);
+                    resposta.Resultado = "Avaliação curtida";
+                    resposta.Sucesso = true;
+                }
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil EditarComentario(EditarComentarioModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                Comentario comentario = _comentarioService.GetById(model.ComentarioId);
+                if (model.UsuarioId != comentario.UsuarioId)
+                {
+                    resposta.Resultado = "Este usuário não tem permissão para editar o comentario";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+                if (comentario != null)
+                {
+                    Usuario usuario = _usuarioService.GetById(model.UsuarioId);
+                    
+                    comentario.Texto = model.Texto;
+                    _comentarioService.Add(comentario);
+                    resposta.Resultado = "Comentario editado";
+                    resposta.Sucesso = true;
+                }
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil DeletarComentario(DeletarComentarioModel model)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                Comentario comentario = _comentarioService.GetById(model.ComentarioId);
+                if (model.UsuarioId != comentario.UsuarioId)
+                {
+                    resposta.Resultado = "Este usuário não tem permissão para deletar o comentario";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+                if (comentario != null)
+                {
+                    _comentarioService.Remove(comentario);
+                    resposta.Resultado = "Comentario excluido";
+                    resposta.Sucesso = true;
+                }
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetComentariosByAvaliacaoId(Guid AvaliacaoId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Comentario> comentarios = _comentarioService.GetComentariosByAvaliacaoId(AvaliacaoId);
+                List<ComentarioResponse> listComentarios = new List<ComentarioResponse>();
+                comentarios.ForEach(x =>
+               {
+                   Usuario usuario = _usuarioService.GetById(x.Id);
+                   ComentarioResponse comentario = new ComentarioResponse
+                   {
+                       Texto = x.Texto,
+                       Username = usuario.Username
+                   };
+                   listComentarios.Add(comentario);
+               });
+                resposta.Resultado = listComentarios;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
         }
     }
 }

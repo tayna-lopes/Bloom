@@ -7,5 +7,6 @@ namespace Bloom.BLL.ServicesInterfaces
 {
     public interface IComentarioService : IServiceBase<Comentario>
     {
+        List<Comentario> GetComentariosByAvaliacaoId(Guid AvaliacaoId);
     }
 }

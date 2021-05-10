@@ -7,5 +7,9 @@ namespace Bloom.BLL.RepositoriesInterfaces
 {
     public interface ICurtidasRepository : IRepositoryBase<Curtida>
     {
+        List<Curtida> GetCurtidasFilmesId(Guid FilmesId);
+        List<Curtida> GetCurtidasSerieId(Guid SerieId);
+        List<Curtida> GetCurtidasLivroId(Guid LivroId);
+        List<Curtida> GetCurtidasAvaliacaoId(Guid AvaliacaoId);
     }
 }

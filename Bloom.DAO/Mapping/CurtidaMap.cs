@@ -25,6 +25,7 @@ namespace Bloom.DAO.Mapping
                     x => x.ToString(),
                     x => (TipoAvaliacao)Enum.Parse(typeof(TipoAvaliacao), x))
                 .HasDefaultValue(TipoAvaliacao.Filme);
+            builder.Property(x => x.AvaliacaoId);
         }
     }
 }

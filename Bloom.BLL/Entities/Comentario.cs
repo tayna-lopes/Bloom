@@ -13,6 +13,7 @@ namespace Bloom.BLL.Entities
         public Guid? FilmeId { get; set; }
         public Guid? SerieId { get; set; }
         public Guid? LivroId { get; set; }
+        public Guid AvaliacaoId { get; set; }
         public TipoAvaliacao TipoAvaliacao { get; set; }
     }
 }

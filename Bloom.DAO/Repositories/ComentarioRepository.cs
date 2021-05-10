@@ -19,5 +19,10 @@ namespace Bloom.DAO.Repositories
         {
             _comentarios = _context.Comentarios;
         }
+
+        public List<Comentario> GetComentariosByAvaliacaoId(Guid AvaliacaoId)
+        {
+            return _comentarios.Where(x => x.AvaliacaoId == AvaliacaoId).ToList();
+        }
     }
 }
