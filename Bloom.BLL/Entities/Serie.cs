@@ -8,6 +8,7 @@ namespace Bloom.BLL.Entities
     public class Serie
     {
         public Guid Id { get; set; }
+        public string Foto { get; set; }
         public string Diretor { get; set; }
         public string Titulo { get; set; }
         public string Elenco { get; set; }

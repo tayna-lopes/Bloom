@@ -5,9 +5,12 @@ using Bloom.BLL.Enums;
 using Bloom.BLL.ServicesInterfaces;
 using Bloom.BLL.Utils;
 using Cryptography;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Bloom.Application.AppServices
 {
@@ -35,9 +38,20 @@ namespace Bloom.Application.AppServices
                     return resposta;
                 };
                 var elenco = String.Join(", ", model.Elenco);
+
+                Guid MovieId = Guid.NewGuid();
+                string Foto = string.Empty;
+
+                ResponseUtil resultImg = DownloadImage(model.Foto, MovieId.ToString()).Result;
+                if (resultImg.Sucesso)
+                {
+                    Foto = resultImg.Resultado.ToString();
+                }
+
                 Filme filme = new Filme
                 {
-                    Id = Guid.NewGuid(),
+                    Id = MovieId,
+                    Foto = Foto,
                     UsuarioId = model.UsuarioId,
                     Titulo = model.Titulo,
                     Diretor = model.Diretor,
@@ -74,6 +88,14 @@ namespace Bloom.Application.AppServices
                     return resposta;
                 };
 
+                if (model.Foto != null)
+                {
+                    ResponseUtil resultImg = DownloadImage(model.Foto, filme.Id.ToString()).Result;
+                    if (resultImg.Sucesso)
+                    {
+                        filme.Foto = resultImg.Resultado.ToString();
+                    }
+                }
 
                 if (model.Titulo != null)
                 {
@@ -304,6 +326,38 @@ namespace Bloom.Application.AppServices
                 resposta.Resultado = e.Message;
             }
             return resposta;
+        }
+        public async Task<ResponseUtil> DownloadImage(IFormFile file, string MovieId)
+        {
+            var response = new ResponseUtil();
+
+            try
+            {
+                string dir = Directory.GetCurrentDirectory();
+                dir += ".BLL";
+                string insideDir = "/Assets/MoviesImages/";
+                string path = dir + insideDir;
+
+
+                string[] subs = file.FileName.Split('.');
+                var fileName = $"Movie+{MovieId}.{subs[1]}";
+
+                string filePath = Path.Combine(path, fileName);
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+
+                response.Sucesso = true;
+                response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
+            }
+            catch (Exception e)
+            {
+                response.Resultado = "Erro ao adicionar a imagem";
+                response.Sucesso = false;
+            }
+
+            return response;
         }
     }
 }

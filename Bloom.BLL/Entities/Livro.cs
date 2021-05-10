@@ -8,6 +8,7 @@ namespace Bloom.BLL.Entities
     public class Livro
     {
         public Guid Id { get; set; }
+        public string Foto { get; set; }
         public string Autores { get; set; }
         public string Titulo { get; set; }
         public string Editora { get; set; }

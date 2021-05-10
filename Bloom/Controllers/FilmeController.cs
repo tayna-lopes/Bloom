@@ -27,7 +27,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("NovoFilme")]
-        public IActionResult CriarFilme([FromBody] CriarFilmeModel model)
+        public IActionResult CriarFilme([FromForm] CriarFilmeModel model)
         {
             var resposta = _filmeAppService.CriarFilme(model);
             if (resposta.Sucesso)
@@ -46,7 +46,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("AtualizarFilme")]
-        public IActionResult AtualizarFilme([FromBody] AtualizarFilmeModel model)
+        public IActionResult AtualizarFilme([FromForm] AtualizarFilmeModel model)
         {
             var resposta = _filmeAppService.AtualizarFilme(model);
             if (resposta.Sucesso)

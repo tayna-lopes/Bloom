@@ -1,4 +1,5 @@
 ﻿using Bloom.BLL.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,7 @@ namespace Bloom.Application.Models
 {
     public class CriarFilmeModel
     {
+        public IFormFile Foto { get; set; }
         public string Diretor { get; set; }
         public string Titulo { get; set; }
         public List<string> Elenco { get; set; }
