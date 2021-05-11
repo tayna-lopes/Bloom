@@ -12,7 +12,6 @@ namespace Bloom.Application.AppServicesInterfaces
         bool NovoUsuario(NovoUsuarioModel model);
         ResponseUtil ValidarUsuario(LoginModel model);
         ResponseUtil Login(LoginModel model);
-        ResponseUtil GetInformacoesUser(string userEmail);
-        ResponseUtil AtualizarUsuario(UpdateUserModel model);
+        
     }
 }

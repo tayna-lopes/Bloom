@@ -24,6 +24,7 @@ namespace Bloom.IOC
 
             //AppService
             services.AddScoped<IAuthenticationAppService, AuthenticationAppService>();
+            services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<IAmizadeAppService, AmizadeAppService>();
             services.AddScoped<IAvaliacaoAppService, AvaliacaoAppService>();
             services.AddScoped<ICurtidaAppService, CurtidaAppService>();

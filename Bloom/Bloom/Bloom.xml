@@ -60,22 +60,6 @@
             <response code="200">Token</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
-        <member name="M:Bloom.Controllers.AuthenticationController.GetInformacoesUser(System.String)">
-            <summary>
-            Retorna as informações do usuário
-            </summary>
-            <returns>Token de autenticação</returns>
-            <response code="200">Token</response>
-            <response code="400">Corpo da requisição inválido</response>  
-        </member>
-        <member name="M:Bloom.Controllers.AuthenticationController.AtualizarUsuario(Bloom.Application.Models.UpdateUserModel)">
-            <summary>
-            Atualiza as informações do usuário
-            </summary>
-            <returns>Token de autenticação</returns>
-            <response code="200">Token</response>
-            <response code="400">Corpo da requisição inválido</response>  
-        </member>
         <member name="M:Bloom.Controllers.AvaliacaoController.Convidar(Bloom.Application.Models.NovaAvaliacaoModel)">
             <summary>
             Avaliação de midia
@@ -306,6 +290,22 @@
             </summary>
             <returns>Sucesso e mensagem</returns>
             <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.UsuarioController.GetInformacoesUser(System.String)">
+            <summary>
+            Retorna as informações do usuário
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.UsuarioController.AtualizarUsuario(Bloom.Application.Models.UpdateUserModel)">
+            <summary>
+            Atualiza as informações do usuário
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
     </members>
