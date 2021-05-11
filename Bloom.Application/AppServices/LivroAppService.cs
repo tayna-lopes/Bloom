@@ -5,9 +5,12 @@ using Bloom.BLL.Enums;
 using Bloom.BLL.ServicesInterfaces;
 using Bloom.BLL.Utils;
 using Cryptography;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Bloom.Application.AppServices
 {
@@ -35,9 +38,19 @@ namespace Bloom.Application.AppServices
                     return resposta;
                 };
                 var autores = String.Join(", ", model.Autores);
+
+                Guid LivroId = Guid.NewGuid();
+                string Foto = string.Empty;
+
+                ResponseUtil resultImg = DownloadImage(model.Foto, LivroId.ToString()).Result;
+                if (resultImg.Sucesso)
+                {
+                    Foto = resultImg.Resultado.ToString();
+                }
                 Livro livro = new Livro
                 {
-                    Id = Guid.NewGuid(),
+                    Id = LivroId,
+                    Foto = Foto,
                     UsuarioId = model.UsuarioId,
                     Titulo = model.Titulo,
                     Autores = autores,
@@ -74,7 +87,14 @@ namespace Bloom.Application.AppServices
                     return resposta;
                 };
 
-
+                if (model.Foto != null)
+                {
+                    ResponseUtil resultImg = DownloadImage(model.Foto, livro.Id.ToString()).Result;
+                    if (resultImg.Sucesso)
+                    {
+                        livro.Foto = resultImg.Resultado.ToString();
+                    }
+                }
                 if (model.Titulo != null)
                 {
                     livro.Titulo = model.Titulo;
@@ -305,6 +325,38 @@ namespace Bloom.Application.AppServices
                 resposta.Resultado = e.Message;
             }
             return resposta;
+        }
+        public async Task<ResponseUtil> DownloadImage(IFormFile file, string LivroId)
+        {
+            var response = new ResponseUtil();
+
+            try
+            {
+                string dir = Directory.GetCurrentDirectory();
+                dir += ".BLL";
+                string insideDir = "/Assets/BooksImages/";
+                string path = dir + insideDir;
+
+
+                string[] subs = file.FileName.Split('.');
+                var fileName = $"{LivroId}.{subs[1]}";
+
+                string filePath = Path.Combine(path, fileName);
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+
+                response.Sucesso = true;
+                response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
+            }
+            catch (Exception e)
+            {
+                response.Resultado = "Erro ao adicionar a imagem";
+                response.Sucesso = false;
+            }
+
+            return response;
         }
 
     }

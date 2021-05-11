@@ -27,7 +27,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("NovoLivro")]
-        public IActionResult CriarLivro([FromBody] CriarLivroModel model)
+        public IActionResult CriarLivro([FromForm] CriarLivroModel model)
         {
             var resposta = _livroAppService.CriarLivro(model);
             if (resposta.Sucesso)
@@ -46,7 +46,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("AtualizarLivro")]
-        public IActionResult AtualizarLivro([FromBody] AtualizarLivroModel model)
+        public IActionResult AtualizarLivro([FromForm] AtualizarLivroModel model)
         {
             var resposta = _livroAppService.AtualizarLivro(model);
             if (resposta.Sucesso)

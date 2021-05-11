@@ -26,7 +26,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("NovaSerie")]
-        public IActionResult CriarSerie([FromBody] CriarSerieModel model)
+        public IActionResult CriarSerie([FromForm] CriarSerieModel model)
         {
             var resposta = _serieAppService.CriarSerie(model);
             if (resposta.Sucesso)
@@ -45,7 +45,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
         [Route("AtualizarSerie")]
-        public IActionResult AtualizarSerie([FromBody] AtualizarSerieModel model)
+        public IActionResult AtualizarSerie([FromForm] AtualizarSerieModel model)
         {
             var resposta = _serieAppService.AtualizarSerie(model);
             if (resposta.Sucesso)

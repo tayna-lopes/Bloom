@@ -340,7 +340,7 @@ namespace Bloom.Application.AppServices
 
 
                 string[] subs = file.FileName.Split('.');
-                var fileName = $"Movie+{MovieId}.{subs[1]}";
+                var fileName = $"{MovieId}.{subs[1]}";
 
                 string filePath = Path.Combine(path, fileName);
                 using (Stream fileStream = new FileStream(filePath, FileMode.Create))
