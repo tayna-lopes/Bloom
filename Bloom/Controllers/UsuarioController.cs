@@ -57,5 +57,44 @@ namespace Bloom.Controllers
 
             return BadRequest(resposta);
         }
+
+        //Admin
+        /// <summary>
+        /// Dados para o gráfico de visualização do admin
+        /// </summary>
+        /// <returns>Token de autenticação</returns>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("Admin/GraficoUsuariosByEstado")]
+        public IActionResult GraficoUsuariosByEstado()
+        {
+            var resposta = _usuarioAppService.GraficoUsuariosByEstado();
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Retorna os 10 usuários mais conectados
+        /// </summary>
+        /// <returns>Token de autenticação</returns>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetMaisConectados")]
+        public IActionResult GetMaisConectados(int take)
+        {
+            var resposta = _usuarioAppService.GetMaisConectados(take);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+
     }
 }

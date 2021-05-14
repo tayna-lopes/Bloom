@@ -38,5 +38,10 @@ namespace Bloom.BLL.Services
         {
             return _usuarioRepository.ValidarUsername(username);
         }
+
+        public List<Usuario> GetAllUsuarios()
+        {
+            return _usuarioRepository.GetAllUsuarios();
+        }
     }
 }

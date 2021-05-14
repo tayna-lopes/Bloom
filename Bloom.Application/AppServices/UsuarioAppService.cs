@@ -10,15 +10,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Linq;
 namespace Bloom.Application.AppServices
 {
     public class UsuarioAppService : IUsuarioAppService
     {
+        private readonly IAmizadeService _amizadeService;
         private readonly IUsuarioService _usuarioService;
 
-        public UsuarioAppService(IUsuarioService usuarioService)
+        public UsuarioAppService(IAmizadeService amizadeService, IUsuarioService usuarioService)
         {
+            _amizadeService = amizadeService;
             _usuarioService = usuarioService;
         }
         //Perfil
@@ -140,6 +142,79 @@ namespace Bloom.Application.AppServices
             }
 
             return response;
+        }
+
+        //Admin
+        public ResponseUtil GraficoUsuariosByEstado()
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                List<Usuario> usersList = _usuarioService.GetAllUsuarios();
+                if (usersList == null)
+                {
+                    resposta.Resultado = "Este usuário não existe";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+
+                List<GraficoResponse> responseList = new List<GraficoResponse>();
+                var usersByState = usersList.GroupBy(x => x.Estado);
+                
+                foreach( var x in usersByState)
+                {
+                    GraficoResponse grafico = new GraficoResponse
+                    {
+                        Numero = x.Count(),
+                        Estado = x.FirstOrDefault().Estado
+                    };
+                    responseList.Add(grafico);
+                }
+                resposta.Resultado = responseList;
+                resposta.Sucesso = true;
+                return resposta;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                return resposta;
+            }
+        }
+        public ResponseUtil GetMaisConectados(int Take)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                List<Usuario> usersList = _usuarioService.GetAllUsuarios();
+                if (usersList == null)
+                {
+                    resposta.Resultado = "Este usuário não existe";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+
+                List<MaisConectadosResponse> maisConectadosResponses = new List<MaisConectadosResponse>();
+                usersList.ForEach(x =>
+               {
+                   List<Amizade> amizadesList = _amizadeService.GetMeusAmigos(x.UsuarioId);
+                   MaisConectadosResponse maisConectadoResponse = new MaisConectadosResponse
+                   {
+                       NumeroDeAmigos = amizadesList.Count,
+                       Username = x.Username
+                   };
+
+                   maisConectadosResponses.Add(maisConectadoResponse);
+               });
+
+                resposta.Resultado = maisConectadosResponses.OrderByDescending(x => x.NumeroDeAmigos).Take(Take);
+                resposta.Sucesso = true;
+                return resposta;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                return resposta;
+            }
         }
     }
 }

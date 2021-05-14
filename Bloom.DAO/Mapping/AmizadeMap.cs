@@ -16,7 +16,8 @@ namespace Bloom.DAO.Mapping
 
             builder.HasKey(e => e.Id);
             builder.Property(x => x.ConvidadoId);
-            builder.Property(x => x.ConvidanteId);
+            builder.HasOne(x => x.Convidante).WithMany(x => x.Convidados).HasForeignKey(x=> x.ConvidanteId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Convidado).WithMany(x => x.Convites).HasForeignKey(x=> x.ConvidadoId).OnDelete(DeleteBehavior.Restrict);
             builder.Property(x => x.Status)
                 .HasConversion(
                     x => x.ToString(),

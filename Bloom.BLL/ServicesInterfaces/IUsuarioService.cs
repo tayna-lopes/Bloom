@@ -11,5 +11,6 @@ namespace Bloom.BLL.ServicesInterfaces
         Usuario GetByEmail(string email);
         Usuario GetByUsername(string username);
         bool ValidarUsername(string username);
+        List<Usuario> GetAllUsuarios();
     }
 }

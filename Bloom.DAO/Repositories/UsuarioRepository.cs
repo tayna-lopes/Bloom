@@ -39,6 +39,10 @@ namespace Bloom.DAO.Repositories
                 return true;
             }
         }
-    
+        public List<Usuario> GetAllUsuarios()
+        {
+            return _usuarios.ToList();
+        }
+
     }
 }

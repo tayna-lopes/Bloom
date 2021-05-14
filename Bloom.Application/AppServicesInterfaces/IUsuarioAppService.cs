@@ -10,5 +10,7 @@ namespace Bloom.Application.AppServicesInterfaces
     {
         ResponseUtil GetInformacoesUser(string userEmail);
         ResponseUtil AtualizarUsuario(UpdateUserModel model);
+        ResponseUtil GraficoUsuariosByEstado();
+        ResponseUtil GetMaisConectados(int Take);
     }
 }

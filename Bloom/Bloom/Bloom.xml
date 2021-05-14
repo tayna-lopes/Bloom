@@ -308,5 +308,19 @@
             <response code="200">Token</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.UsuarioController.GraficoUsuariosByEstado">
+            <summary>
+            Dados para o gráfico de visualização do admin
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.UsuarioController.GetMaisConectados(System.Int32)">
+            <summary>
+            Retorna os 10 usuários mais conectados
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
     </members>
 </doc>

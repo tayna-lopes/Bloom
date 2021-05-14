@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Bloom.BLL.Entities
 {
+    [Serializable]
     public class Usuario : BaseEntity
     {
         public Guid UsuarioId { get; set; }
@@ -16,5 +17,7 @@ namespace Bloom.BLL.Entities
         public string Estado { get; set; }
         public bool IsAdmin { get; set; }
         public DateTime DataDeNascimento { get; set; }
+        public virtual List<Amizade> Convidados { get; set; } 
+        public virtual List<Amizade> Convites { get; set; } 
     }
 }

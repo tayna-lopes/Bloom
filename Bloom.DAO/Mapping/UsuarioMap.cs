@@ -24,7 +24,6 @@ namespace Bloom.DAO.Mapping
             builder.Property(t => t.AlteradoPor)
                 .IsRequired()
                 .HasDefaultValue(new Guid());
-
             builder.Property(x => x.Email);
             builder.Property(x => x.Senha);
             builder.Property(x => x.Nome);
