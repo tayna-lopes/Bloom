@@ -1,4 +1,5 @@
 ﻿using Bloom.BLL.Entities;
+using Bloom.BLL.Enums;
 using Bloom.BLL.RepositoriesInterfaces;
 using Bloom.DAO.Context;
 using Microsoft.EntityFrameworkCore;
@@ -25,15 +26,17 @@ namespace Bloom.DAO.Repositories
             var sday = DateTime.Now.Date.AddDays(-10);
             return _series.Where(x => x.Adicionado.Date == sday).ToList();
         }
-
         public List<Serie> GetAllSeriesByUsuarioId(Guid UsuarioId)
         {
             return _series.Where(x => x.UsuarioId == UsuarioId).ToList();
         }
-
         public Serie GetByName(string nome)
         {
             return _series.Where(x => x.Titulo == nome).FirstOrDefault();
+        }
+        public List<Serie> GetSeriesParaAprovacao()
+        {
+            return _series.Where(x => x.Status == StatusAvaliacao.Pendente).ToList();
         }
     }
 }

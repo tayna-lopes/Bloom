@@ -16,21 +16,21 @@ namespace Bloom.BLL.Services
         {
             _filmeRepository = filmeRepository;
         }
-
         public List<Filme> GetAdicionadosRecentemente()
         {
             return _filmeRepository.GetAdicionadosRecentemente();
         }
-
         public List<Filme> GetAllFilmesByUsuarioId(Guid UsuarioId)
         {
             return _filmeRepository.GetAllFilmesByUsuarioId(UsuarioId);
         }
-
         public Filme GetByName(string nome)
         {
             return _filmeRepository.GetByName(nome);
         }
-
+        public List<Filme> GetFilmesParaAprovacao()
+        {
+            return _filmeRepository.GetFilmesParaAprovacao();
+        }
     }
 }

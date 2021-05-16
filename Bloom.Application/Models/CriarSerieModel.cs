@@ -11,7 +11,7 @@ namespace Bloom.Application.Models
         public IFormFile Foto { get; set; }
         public string Diretor { get; set; }
         public string Titulo { get; set; }
-        public string Elenco { get; set; }
+        public List<string> Elenco { get; set; }
         public string Pais { get; set; }
         public int Ano { get; set; }
         public double Classificacao { get; set; }

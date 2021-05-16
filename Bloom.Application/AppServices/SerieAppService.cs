@@ -162,7 +162,9 @@ namespace Bloom.Application.AppServices
                     Pais = serie.Pais,
                     Username = usuario.Username,
                     NumeroDeTemporadas = serie.NumeroDeTemporadas,
-                    Id = serie.Id
+                    Id = serie.Id,
+                    Classificacao = serie.Classificacao,
+                    Foto = serie.Foto
                 };
 
                 resposta.Sucesso = true;
@@ -205,7 +207,8 @@ namespace Bloom.Application.AppServices
                             Username = usuario.Username,
                             NumeroDeTemporadas = serie.NumeroDeTemporadas,
                             Classificacao = serie.Classificacao,
-                            Id = serie.Id
+                            Id = serie.Id,
+                            Foto = serie.Foto
                         };
                         seriesResponses.Add(serieResponse);
                     }
@@ -251,11 +254,14 @@ namespace Bloom.Application.AppServices
                             Username = usuario.Username,
                             NumeroDeTemporadas = serie.NumeroDeTemporadas,
                             Classificacao = serie.Classificacao,
-                            Id = serie.Id
+                            Id = serie.Id,
+                            Foto = serie.Foto
                         };
                         seriesResponses.Add(serieResponse);
                     }
                 }
+                resposta.Sucesso = true;
+                resposta.Resultado = seriesResponses;
             }
             catch (Exception e)
             {
@@ -294,11 +300,14 @@ namespace Bloom.Application.AppServices
                             Username = usuario.Username,
                             NumeroDeTemporadas = serie.NumeroDeTemporadas,
                             Classificacao = serie.Classificacao,
-                            Id = serie.Id
+                            Id = serie.Id,
+                            Foto = serie.Foto
                         };
                         seriesResponses.Add(serieResponse);
                     }
                 }
+                resposta.Sucesso = true;
+                resposta.Resultado = seriesResponses;
             }
             catch (Exception e)
             {

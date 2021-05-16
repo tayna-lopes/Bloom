@@ -10,5 +10,6 @@ namespace Bloom.BLL.ServicesInterfaces
         Livro GetByName(string nome);
         List<Livro> GetAllLivrosByUsuarioId(Guid UsuarioId);
         List<Livro> GetAdicionadosRecentemente();
+        List<Livro> GetLivrosParaAprovacao();
     }
 }

@@ -15,5 +15,7 @@ namespace Bloom.Application.Models
         public Genero Genero { get; set; }
         public string Username { get; set; }
         public Guid FilmeId { get; set; }
+        public double Classificacao { get; set; }
+        public string Foto { get; set; }
     }
 }

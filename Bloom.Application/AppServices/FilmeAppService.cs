@@ -158,7 +158,9 @@ namespace Bloom.Application.AppServices
                     Genero = filme.Genero,
                     Pais = filme.Pais,
                     Username = usuario.Username,
-                    FilmeId = filme.Id
+                    FilmeId = filme.Id,
+                    Classificacao = filme.Classificacao,
+                    Foto = filme.Foto
                 };
 
                 resposta.Sucesso = true;
@@ -199,6 +201,7 @@ namespace Bloom.Application.AppServices
                             Genero = x.Genero,
                             Pais = x.Pais,
                             Username = usuario.Username,
+                            Classificacao = x.Classificacao,
                             FilmeId = x.Id
                         };
                         filmesResponse.Add(filmeResponse);
@@ -243,7 +246,9 @@ namespace Bloom.Application.AppServices
                             Genero = x.Genero,
                             Pais = x.Pais,
                             Username = usuario.Username,
-                            FilmeId = x.Id
+                            FilmeId = x.Id,
+                            Classificacao = x.Classificacao,
+                            Foto = x.Foto
                         };
                         filmesResponse.Add(filmeResponse);
                     }
@@ -287,7 +292,10 @@ namespace Bloom.Application.AppServices
                             Genero = x.Genero,
                             Pais = x.Pais,
                             Username = usuario.Username,
-                            FilmeId = x.Id
+                            FilmeId = x.Id,
+                            Classificacao = x.Classificacao,
+                            Foto = x.Foto
+
                         };
                         filmesResponse.Add(filmeResponse);
                     }

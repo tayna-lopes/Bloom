@@ -12,5 +12,11 @@ namespace Bloom.Application.AppServicesInterfaces
         ResponseUtil AtualizarUsuario(UpdateUserModel model);
         ResponseUtil GraficoUsuariosByEstado();
         ResponseUtil GetMaisConectados(int Take);
+        ResponseUtil GetSeriesParaAprovacao();
+        ResponseUtil AprovarRecusarSerie(Guid serieId, bool Aprovar);
+        ResponseUtil GetFilmesParaAprovacao();
+        ResponseUtil AprovarRecusarFilmes(Guid FilmeId, bool Aprovar);
+        ResponseUtil GetLivrosParaAprovacao();
+        ResponseUtil AprovarRecusarLivro(Guid LivroId, bool Aprovar);
     }
 }

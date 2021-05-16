@@ -156,7 +156,9 @@ namespace Bloom.Application.AppServices
                     Genero = livro.Genero,
                     Pais = livro.Pais,
                     Username = usuario.Username,
-                    Id = livro.Id
+                    Id = livro.Id,
+                    Classificacao = livro.Classificacao,
+                    Foto = livro.Foto
                 };
 
                 resposta.Sucesso = true;
@@ -197,7 +199,9 @@ namespace Bloom.Application.AppServices
                             Genero = livro.Genero,
                             Pais = livro.Pais,
                             Username = usuario.Username,
-                            Id = livro.Id
+                            Id = livro.Id,
+                            Classificacao = livro.Classificacao,
+                            Foto = livro.Foto
                         };
                         livrosResponse.Add(livroResponse);
                     }
@@ -241,7 +245,9 @@ namespace Bloom.Application.AppServices
                             Genero = livro.Genero,
                             Pais = livro.Pais,
                             Username = usuario.Username,
-                            Id = livro.Id
+                            Id = livro.Id,
+                            Classificacao = livro.Classificacao,
+                            Foto = livro.Foto
                         };
                         livrosResponse.Add(livroResponse);
                     }
@@ -285,7 +291,9 @@ namespace Bloom.Application.AppServices
                             Genero = livro.Genero,
                             Pais = livro.Pais,
                             Username = usuario.Username,
-                            Id = livro.Id
+                            Id = livro.Id,
+                            Classificacao = livro.Classificacao,
+                            Foto = livro.Foto
                         };
                         livrosResponse.Add(livroResponse);
                     }

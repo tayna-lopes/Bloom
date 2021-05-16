@@ -322,5 +322,11 @@
             <returns>Token de autenticação</returns>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Bloom.Controllers.UsuarioController.GetSeriesParaAprovacao" -->
+        <!-- Badly formed XML comment ignored for member "M:Bloom.Controllers.UsuarioController.AprovarRecusarSerie(System.Guid,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Bloom.Controllers.UsuarioController.GetFilmesParaAprovacao" -->
+        <!-- Badly formed XML comment ignored for member "M:Bloom.Controllers.UsuarioController.AprovarRecusarFilme(System.Guid,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:Bloom.Controllers.UsuarioController.GetLivrosParaAprovacao" -->
+        <!-- Badly formed XML comment ignored for member "M:Bloom.Controllers.UsuarioController.AprovarRecusarLivro(System.Guid,System.Boolean)" -->
     </members>
 </doc>

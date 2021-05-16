@@ -11,17 +11,27 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Bloom.BLL.Enums;
+using Bloom.BLL.RepositoriesInterfaces;
+
 namespace Bloom.Application.AppServices
 {
     public class UsuarioAppService : IUsuarioAppService
     {
         private readonly IAmizadeService _amizadeService;
         private readonly IUsuarioService _usuarioService;
+        private readonly ISerieService _serieService;
+        private readonly IFilmeService _filmeService;
+        private readonly ILivroService _livroService;
 
-        public UsuarioAppService(IAmizadeService amizadeService, IUsuarioService usuarioService)
+        public UsuarioAppService(IAmizadeService amizadeService, IUsuarioService usuarioService, ISerieService serieService, IFilmeService filmeService, ILivroService livroService)
         {
             _amizadeService = amizadeService;
             _usuarioService = usuarioService;
+            _serieService = serieService;
+            _filmeService = filmeService;
+            _livroService = livroService;
+
         }
         //Perfil
         public ResponseUtil GetInformacoesUser(string userEmail)
@@ -215,6 +225,243 @@ namespace Bloom.Application.AppServices
                 resposta.Resultado = e;
                 return resposta;
             }
+        }
+
+        //Serie
+        public ResponseUtil GetSeriesParaAprovacao()
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                var series = _serieService.GetSeriesParaAprovacao();
+                if (series == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Nenhuma serie cadastrado";
+                    return resposta;
+                };
+
+                List<SerieResponse> seriesResponses = new List<SerieResponse>();
+                foreach (var serie in series)
+                {
+                    Usuario usuario = _usuarioService.GetById(serie.UsuarioId);
+                    SerieResponse serieResponse = new SerieResponse
+                    {
+                        Diretor = serie.Diretor,
+                        Ano = serie.Ano,
+                        Elenco = serie.Elenco,
+                        Titulo = serie.Titulo,
+                        Genero = serie.Genero,
+                        Pais = serie.Pais,
+                        Username = usuario.Username,
+                        NumeroDeTemporadas = serie.NumeroDeTemporadas,
+                        Classificacao = serie.Classificacao,
+                        Id = serie.Id
+                    };
+                    seriesResponses.Add(serieResponse);
+
+                }
+                resposta.Sucesso = true;
+                resposta.Resultado = seriesResponses;
+            }
+            catch(Exception e)
+            {
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil AprovarRecusarSerie(Guid serieId,bool Aprovar)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                Serie serie = _serieService.GetById(serieId);
+                if(serie == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Esta série não existe";
+                    return resposta;
+                }
+                if (Aprovar)
+                {
+                    serie.Status = StatusAvaliacao.Aprovado;
+                    _serieService.Edit(serie);
+                    resposta.Resultado = "Série aprovada!";
+                }
+                if (!Aprovar)
+                {
+                    serie.Status = StatusAvaliacao.Rejeitado;
+                    _serieService.Edit(serie);
+                    resposta.Resultado = "Série recusada!";
+                }
+                resposta.Sucesso = true;
+
+            }
+            catch(Exception e)
+            {
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+
+        //Filme
+        public ResponseUtil GetFilmesParaAprovacao()
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                var filmes = _filmeService.GetFilmesParaAprovacao();
+                if (filmes == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Nenhum filme cadastrado";
+                    return resposta;
+                };
+
+                List<FilmeResponse> filmeResponses = new List<FilmeResponse>();
+                foreach (var filme in filmes)
+                {
+                    Usuario usuario = _usuarioService.GetById(filme.UsuarioId);
+                    FilmeResponse filmeResponse = new FilmeResponse
+                    {
+                        Diretor = filme.Diretor,
+                        Ano = filme.Ano,
+                        Elenco = filme.Elenco,
+                        Titulo = filme.Titulo,
+                        Genero = filme.Genero,
+                        Pais = filme.Pais,
+                        Username = usuario.Username,
+                        Classificacao = filme.Classificacao,
+                        FilmeId = filme.Id,
+                        Foto = filme.Foto
+                    };
+                    filmeResponses.Add(filmeResponse);
+
+                }
+                resposta.Sucesso = true;
+                resposta.Resultado = filmeResponses;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil AprovarRecusarFilmes(Guid FilmeId, bool Aprovar)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                Filme filme = _filmeService.GetById(FilmeId);
+                if (filme == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Este filme não existe";
+                    return resposta;
+                }
+                if (Aprovar)
+                {
+                    filme.Status = StatusAvaliacao.Aprovado;
+                    _filmeService.Edit(filme);
+                    resposta.Resultado = "Filme aprovada!";
+                }
+                if (!Aprovar)
+                {
+                    filme.Status = StatusAvaliacao.Rejeitado;
+                    _filmeService.Edit(filme);
+                    resposta.Resultado = "Filme recusada!";
+                }
+                resposta.Sucesso = true;
+
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+
+        //Livro
+        public ResponseUtil GetLivrosParaAprovacao()
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                var livros = _livroService.GetLivrosParaAprovacao();
+                if (livros == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Nenhum livro cadastrado";
+                    return resposta;
+                };
+
+                List<LivroResponse> livroResponses = new List<LivroResponse>();
+                foreach (var livro in livroResponses)
+                {
+                    Usuario usuario = _usuarioService.GetById(livro.UsuarioId);
+                    LivroResponse livroResponse = new LivroResponse
+                    {
+                        Autores = livro.Autores,
+                        Ano = livro.Ano,
+                        Editora = livro.Editora,
+                        Titulo = livro.Titulo,
+                        Genero = livro.Genero,
+                        Pais = livro.Pais,
+                        Username = usuario.Username,
+                        Classificacao = livro.Classificacao,
+                        Id = livro.Id,
+                        Foto = livro.Foto
+                    };
+                    livroResponses.Add(livroResponse);
+
+                }
+                resposta.Sucesso = true;
+                resposta.Resultado = livroResponses;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil AprovarRecusarLivro(Guid LivroId, bool Aprovar)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                Livro livro = _livroService.GetById(LivroId);
+                if (livro == null)
+                {
+                    resposta.Sucesso = false;
+                    resposta.Resultado = "Este livro não existe";
+                    return resposta;
+                }
+                if (Aprovar)
+                {
+                    livro.Status = StatusAvaliacao.Aprovado;
+                    _livroService.Edit(livro);
+                    resposta.Resultado = "Livro aprovada!";
+                }
+                if (!Aprovar)
+                {
+                    livro.Status = StatusAvaliacao.Rejeitado;
+                    _livroService.Edit(livro);
+                    resposta.Resultado = "Livro recusada!";
+                }
+                resposta.Sucesso = true;
+
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
+            }
+            return resposta;
         }
     }
 }

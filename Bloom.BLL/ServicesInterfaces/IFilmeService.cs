@@ -10,5 +10,6 @@ namespace Bloom.BLL.ServicesInterfaces
         Filme GetByName(string nome);
         List<Filme> GetAllFilmesByUsuarioId(Guid UsuarioId);
         List<Filme> GetAdicionadosRecentemente();
+        List<Filme> GetFilmesParaAprovacao();
     }
 }

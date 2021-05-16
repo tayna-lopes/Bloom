@@ -18,5 +18,6 @@ namespace Bloom.Application.Models
         public Genero Genero { get; set; }
         public string Username { get; set; }
         public Guid UsuarioId { get; set; }
+        public string Foto { get; set; }
     }
 }

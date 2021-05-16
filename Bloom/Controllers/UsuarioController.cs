@@ -95,6 +95,102 @@ namespace Bloom.Controllers
             return BadRequest(resposta);
         }
 
+        /// <summary>
+        /// Buscar séries para aprovação
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetSeriesParaAprovacao")]
+        public IActionResult GetSeriesParaAprovacao()
+        {
+            var resposta = _usuarioAppService.GetSeriesParaAprovacao();
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Aprovar ou recusar série
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpPost]
+        [Route("AprovarRecusarSerie")]
+        public IActionResult AprovarRecusarSerie(Guid serieId, bool Aprovar)
+        {
+            var resposta = _usuarioAppService.AprovarRecusarSerie(serieId, Aprovar);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Buscar filmes para aprovação
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetFilmesParaAprovacao")]
+        public IActionResult GetFilmesParaAprovacao()
+        {
+            var resposta = _usuarioAppService.GetFilmesParaAprovacao();
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Aprovar ou recusar filme
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpPost]
+        [Route("AprovarRecusarFilme")]
+        public IActionResult AprovarRecusarFilme(Guid FilmeId, bool Aprovar)
+        {
+            var resposta = _usuarioAppService.AprovarRecusarFilmes(FilmeId, Aprovar);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Buscar livros para aprovação
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetLivrosParaAprovacao")]
+        public IActionResult GetLivrosParaAprovacao()
+        {
+            var resposta = _usuarioAppService.GetLivrosParaAprovacao();
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
+        /// <summary>
+        /// Aprovar ou recusar livro
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpPost]
+        [Route("AprovarRecusarLivro")]
+        public IActionResult AprovarRecusarLivro(Guid LivroId, bool Aprovar)
+        {
+            var resposta = _usuarioAppService.AprovarRecusarLivro(LivroId, Aprovar);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
 
     }
 }

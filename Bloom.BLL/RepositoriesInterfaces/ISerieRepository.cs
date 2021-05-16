@@ -10,5 +10,6 @@ namespace Bloom.BLL.RepositoriesInterfaces
         Serie GetByName(string nome);
         List<Serie> GetAllSeriesByUsuarioId(Guid UsuarioId);
         List<Serie> GetAdicionadosRecentemente();
+        List<Serie> GetSeriesParaAprovacao();
     }
 }
