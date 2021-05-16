@@ -20,21 +20,6 @@ namespace Bloom.DAO.Repositories
         {
             _avaliacoes = _context.Avaliacoes;
         }
-        public List<int> GetNotasFilme(Guid FilmeId)
-        {
-            return _avaliacoes.Where(x => x.FilmeId == FilmeId && x.TipoAvaliacao == TipoAvaliacao.Filme)
-                .Select(y => y.Classificacao).ToList();
-        }
-        public List<int> GetNotasLivro(Guid LivroId)
-        {
-            return _avaliacoes.Where(x => x.LivroId == LivroId && x.TipoAvaliacao == TipoAvaliacao.Livro)
-                .Select(y => y.Classificacao).ToList();
-        }
-        public List<int> GetNotasSerie(Guid SerieId)
-        {
-            return _avaliacoes.Where(x => x.SerieId == SerieId && x.TipoAvaliacao == TipoAvaliacao.Serie)
-                .Select(y => y.Classificacao).ToList();
-        }
         public List<Avaliacao> GetAvaliacaoFilmesId(Guid FilmesId)
         {
             return _avaliacoes.Where(x => x.FilmeId == FilmesId).ToList();

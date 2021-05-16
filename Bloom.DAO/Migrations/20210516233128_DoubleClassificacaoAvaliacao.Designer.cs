@@ -4,14 +4,16 @@ using Bloom.DAO.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bloom.DAO.Migrations
 {
     [DbContext(typeof(BloomContext))]
-    partial class BloomContextModelSnapshot : ModelSnapshot
+    [Migration("20210516233128_DoubleClassificacaoAvaliacao")]
+    partial class DoubleClassificacaoAvaliacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

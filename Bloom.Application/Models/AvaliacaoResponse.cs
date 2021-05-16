@@ -9,6 +9,6 @@ namespace Bloom.Application.Models
         public Guid UsuarioId { get; set; }
         public Guid AvaliacaoId { get; set; }
         public string Comentario { get; set; }
-        public int Classificacao { get; set; }
+        public double Classificacao { get; set; }
     }
 }

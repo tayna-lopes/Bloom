@@ -50,6 +50,20 @@ namespace Bloom.Application.AppServices
                         TipoAvaliacao = BLL.Enums.TipoAvaliacao.Livro
                     };
                     _avaliacaoService.Add(novaAvaliacao);
+
+                    List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoLivroId(livro.Id);
+                    if(notas.Count > 1)
+                    {
+                        double media = 0;
+                        notas.ForEach(x =>
+                        {
+                            media += x.Classificacao;
+                        });
+                        double mediaFinal = media / notas.Count;
+                        novaAvaliacao.Classificacao = mediaFinal;
+                        _avaliacaoService.Edit(novaAvaliacao);
+                    };
+
                     resposta.Resultado = "Sua avaliação de livro foi adicionada";
                     resposta.Sucesso = true;
                 }
@@ -72,6 +86,20 @@ namespace Bloom.Application.AppServices
                         TipoAvaliacao = BLL.Enums.TipoAvaliacao.Filme
                     };
                     _avaliacaoService.Add(novaAvaliacao);
+
+                    List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoFilmesId(filme.Id);
+                    if (notas.Count > 1)
+                    {
+                        double media = 0;
+                        notas.ForEach(x =>
+                        {
+                            media += x.Classificacao;
+                        });
+                        double mediaFinal = media / notas.Count;
+                        novaAvaliacao.Classificacao = mediaFinal;
+                        _avaliacaoService.Edit(novaAvaliacao);
+                    };
+
                     resposta.Resultado = "Sua avaliação de filme foi adicionada";
                     resposta.Sucesso = true;
                 }
@@ -94,6 +122,19 @@ namespace Bloom.Application.AppServices
                         TipoAvaliacao = BLL.Enums.TipoAvaliacao.Serie
                     };
                     _avaliacaoService.Add(novaAvaliacao);
+
+                    List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoFilmesId(serie.Id);
+                    if (notas.Count > 1)
+                    {
+                        double media = 0;
+                        notas.ForEach(x =>
+                        {
+                            media += x.Classificacao;
+                        });
+                        double mediaFinal = media / notas.Count;
+                        novaAvaliacao.Classificacao = mediaFinal;
+                        _avaliacaoService.Edit(novaAvaliacao);
+                    };
                     resposta.Resultado = "Sua avaliação de serie foi adicionada";
                     resposta.Sucesso = true;
                 }
@@ -125,13 +166,14 @@ namespace Bloom.Application.AppServices
                 }
                 if(model.Classificacao != null)
                 {
-                    avaliacao.Classificacao = (int)model.Classificacao;
+                    avaliacao.Classificacao = (double)model.Classificacao;
                 }
                 if (model.Texto != null)
                 {
                     avaliacao.Texto = model.Texto;
                 }
                 _avaliacaoService.Edit(avaliacao);
+                AtualizarClassificacao(avaliacao.Id);
                 resposta.Resultado = "Avaliação editada";
                 resposta.Sucesso = true;
             }
@@ -258,6 +300,29 @@ namespace Bloom.Application.AppServices
                 resposta.Sucesso = false;
             }
             return resposta;
+        }
+        public void AtualizarClassificacao(Guid AvaliacaoId)
+        {
+            try
+            {
+                Avaliacao avaliacao = _avaliacaoService.GetById(AvaliacaoId);
+                if(avaliacao.FilmeId != null)
+                {
+                    List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacaoFilmesId((Guid)avaliacao.FilmeId);
+                    double media = 0;
+                    avaliacoes.ForEach(x =>
+                   {
+                       media += x.Classificacao;
+                   });
+                    double mediaFinal = media / avaliacoes.Count;
+                    avaliacao.Classificacao = mediaFinal;
+                    _avaliacaoService.Edit(avaliacao);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
