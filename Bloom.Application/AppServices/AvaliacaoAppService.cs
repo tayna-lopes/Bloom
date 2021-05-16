@@ -203,6 +203,7 @@ namespace Bloom.Application.AppServices
                     return resposta;
                 }
                 _avaliacaoService.Remove(avaliacao);
+                AtualizarClassificacao(model.AvaliacaoId);
                 resposta.Resultado = "Avaliação deletada";
                 resposta.Sucesso = true;
             }
