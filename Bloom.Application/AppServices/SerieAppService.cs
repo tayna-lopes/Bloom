@@ -80,7 +80,7 @@ namespace Bloom.Application.AppServices
             var resposta = new ResponseUtil();
             try
             {
-                var serie = _serieService.GetByName(model.Titulo);
+                var serie = _serieService.GetById(model.SerieId);
                 if (serie == null)
                 {
                     resposta.Sucesso = false;

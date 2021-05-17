@@ -16,6 +16,6 @@ namespace Bloom.Application.Models
         public int Ano { get; set; }
         public int NumeroDeTemporadas { get; set; }
         public Genero Genero { get; set; }
-        public Guid FilmeId { get; set; }
+        public Guid SerieId { get; set; }
     }
 }
