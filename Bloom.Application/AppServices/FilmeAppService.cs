@@ -319,7 +319,7 @@ namespace Bloom.Application.AppServices
                 if (filme == null)
                 {
                     resposta.Sucesso = false;
-                    resposta.Resultado = "Este filme já está cadastrado";
+                    resposta.Resultado = "Este filme não está cadastrado";
                     return resposta;
                 };
 
