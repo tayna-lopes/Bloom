@@ -8,6 +8,7 @@ namespace Bloom.Application.AppServicesInterfaces
 {
     public interface IUsuarioAppService
     {
+        ResponseUtil GetUserByUsername(string username);
         ResponseUtil GetInformacoesUser(string userEmail);
         ResponseUtil AtualizarUsuario(UpdateUserModel model);
         ResponseUtil GraficoUsuariosByEstado();

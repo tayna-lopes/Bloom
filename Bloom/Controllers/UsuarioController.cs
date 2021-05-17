@@ -19,6 +19,26 @@ namespace Bloom.Controllers
             _usuarioAppService = usuarioAppService;
         }
 
+        //Buscas
+        /// <summary>
+        /// Busca usuário por username
+        /// </summary>
+        /// <returns>Token de autenticação</returns>
+        /// <response code="200">Token</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetUserByUsername")]
+        public IActionResult GetUserByUsername(string username)
+        {
+            var resposta = _usuarioAppService.GetUserByUsername(username);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
         //Perfil
         /// <summary>
         /// Retorna as informações do usuário
@@ -83,7 +103,7 @@ namespace Bloom.Controllers
         /// <returns>Token de autenticação</returns>
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpGet]
-        [Route("GetMaisConectados")]
+        [Route("Admin/GetMaisConectados")]
         public IActionResult GetMaisConectados(int take)
         {
             var resposta = _usuarioAppService.GetMaisConectados(take);
@@ -99,7 +119,7 @@ namespace Bloom.Controllers
         /// Buscar séries para aprovação
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpGet]
-        [Route("GetSeriesParaAprovacao")]
+        [Route("Admin/GetSeriesParaAprovacao")]
         public IActionResult GetSeriesParaAprovacao()
         {
             var resposta = _usuarioAppService.GetSeriesParaAprovacao();
@@ -115,7 +135,7 @@ namespace Bloom.Controllers
         /// Aprovar ou recusar série
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
-        [Route("AprovarRecusarSerie")]
+        [Route("Admin/AprovarRecusarSerie")]
         public IActionResult AprovarRecusarSerie(Guid serieId, bool Aprovar)
         {
             var resposta = _usuarioAppService.AprovarRecusarSerie(serieId, Aprovar);
@@ -131,7 +151,7 @@ namespace Bloom.Controllers
         /// Buscar filmes para aprovação
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpGet]
-        [Route("GetFilmesParaAprovacao")]
+        [Route("Admin/GetFilmesParaAprovacao")]
         public IActionResult GetFilmesParaAprovacao()
         {
             var resposta = _usuarioAppService.GetFilmesParaAprovacao();
@@ -147,7 +167,7 @@ namespace Bloom.Controllers
         /// Aprovar ou recusar filme
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
-        [Route("AprovarRecusarFilme")]
+        [Route("Admin/AprovarRecusarFilme")]
         public IActionResult AprovarRecusarFilme(Guid FilmeId, bool Aprovar)
         {
             var resposta = _usuarioAppService.AprovarRecusarFilmes(FilmeId, Aprovar);
@@ -163,7 +183,7 @@ namespace Bloom.Controllers
         /// Buscar livros para aprovação
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpGet]
-        [Route("GetLivrosParaAprovacao")]
+        [Route("Admin/GetLivrosParaAprovacao")]
         public IActionResult GetLivrosParaAprovacao()
         {
             var resposta = _usuarioAppService.GetLivrosParaAprovacao();
@@ -179,7 +199,7 @@ namespace Bloom.Controllers
         /// Aprovar ou recusar livro
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
-        [Route("AprovarRecusarLivro")]
+        [Route("Admin/AprovarRecusarLivro")]
         public IActionResult AprovarRecusarLivro(Guid LivroId, bool Aprovar)
         {
             var resposta = _usuarioAppService.AprovarRecusarLivro(LivroId, Aprovar);

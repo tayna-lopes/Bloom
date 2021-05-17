@@ -292,6 +292,14 @@
             <response code="200">bool</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.UsuarioController.GetUserByUsername(System.String)">
+            <summary>
+            Busca usuário por username
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
         <member name="M:Bloom.Controllers.UsuarioController.GetInformacoesUser(System.String)">
             <summary>
             Retorna as informações do usuário

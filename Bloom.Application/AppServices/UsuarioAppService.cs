@@ -33,6 +33,31 @@ namespace Bloom.Application.AppServices
             _livroService = livroService;
 
         }
+        //Buscas
+        public ResponseUtil GetUserByUsername(string username)
+        {
+            ResponseUtil resposta = new ResponseUtil();
+            try
+            {
+                Usuario user = _usuarioService.GetByUsername(username);
+                if (user == null)
+                {
+                    resposta.Resultado = "Este usuário não existe";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
+
+                resposta.Resultado = user;
+                resposta.Sucesso = true;
+                return resposta;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e;
+                return resposta;
+            }
+        }
+
         //Perfil
         public ResponseUtil GetInformacoesUser(string userEmail)
         {
