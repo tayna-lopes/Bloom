@@ -13,5 +13,6 @@ namespace Bloom.Application.AppServicesInterfaces
         ResponseUtil EditarAvaliacao(EditarAvaliacaoModel model);
         ResponseUtil DeletarAvaliacao(DeletarAvaliacaoModel model);
         ResponseUtil GetTodasAvaliacoesMediaId(GetTodasAvaliacoesMidiaModel model);
+        ResponseUtil GetTodasAvaliacoesByUsuario(Guid UsuarioId);
     }
 }

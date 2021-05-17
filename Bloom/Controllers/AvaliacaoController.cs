@@ -107,6 +107,24 @@ namespace Bloom.Controllers
 
             return BadRequest(resposta);
         }
+        /// <summary>
+        /// Buscar todas as avaliações do usuário
+        /// </summary>
+        /// <returns>Sucesso e mensagem</returns>
+        /// <response code="200">bool</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetTodasAvaliacoesByUsuario")]
+        public IActionResult GetTodasAvaliacoesByUsuario(Guid UsuarioId)
+        {
+            var resposta = _avaliacaoAppService.GetTodasAvaliacoesByUsuario(UsuarioId);
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
 
     }
 }

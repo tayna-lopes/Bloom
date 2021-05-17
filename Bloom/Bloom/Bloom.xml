@@ -92,6 +92,14 @@
             <response code="200">bool</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
+        <member name="M:Bloom.Controllers.AvaliacaoController.GetTodasAvaliacoesByUsuario(System.Guid)">
+            <summary>
+            Buscar todas as avaliações do usuário
+            </summary>
+            <returns>Sucesso e mensagem</returns>
+            <response code="200">bool</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
         <member name="M:Bloom.Controllers.ComentarioController.NovoComentario(Bloom.Application.Models.NovoComentarioModel)">
             <summary>
             Comentar avaliação

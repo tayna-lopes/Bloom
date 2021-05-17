@@ -302,6 +302,34 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
+        public ResponseUtil GetTodasAvaliacoesByUsuario(Guid UsuarioId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesByUsuarioId(UsuarioId);
+                List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
+                avaliacoes.ForEach(x =>
+                {
+                    AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
+                    {
+                        AvaliacaoId = x.Id,
+                        UsuarioId = x.UsuarioId,
+                        Classificacao = x.Classificacao,
+                        Comentario = x.Texto
+                    };
+                    listAvaliacao.Add(avaliacaoResponse);
+                });
+                resposta.Resultado = listAvaliacao;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
         public void AtualizarClassificacao(Guid AvaliacaoId)
         {
             try

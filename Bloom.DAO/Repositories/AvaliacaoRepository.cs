@@ -32,5 +32,9 @@ namespace Bloom.DAO.Repositories
         {
             return _avaliacoes.Where(x => x.LivroId == LivroId).ToList();
         }
+        public List<Avaliacao> GetAvaliacoesByUsuarioId(Guid UsuarioId)
+        {
+            return _avaliacoes.Where(x => x.UsuarioId == UsuarioId).ToList();
+        }
     }
 }

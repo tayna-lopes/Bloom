@@ -27,5 +27,10 @@ namespace Bloom.BLL.Services
         {
             return _avaliacaoRepository.GetAvaliacaoSerieId(SerieId);
         }
+
+        public List<Avaliacao> GetAvaliacoesByUsuarioId(Guid UsuarioId)
+        {
+            return _avaliacaoRepository.GetAvaliacoesByUsuarioId(UsuarioId);
+        }
     }
 }
