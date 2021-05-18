@@ -25,7 +25,7 @@ namespace Bloom.Controllers
         /// <response code="200">bool</response>
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpPost]
-        [Route("CurtirCurtida")]
+        [Route("CurtirAvaliacao")]
         public IActionResult CurtirAvaliacao([FromBody] CurtirAvaliacaoModel model)
         {
             var resposta = _curtidaAppService.CurtirAvaliacao(model);
@@ -44,7 +44,7 @@ namespace Bloom.Controllers
         /// <response code="200">bool</response>
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpDelete]
-        [Route("DescurtirCurtida")]
+        [Route("DescurtirAvaliacao")]
         public IActionResult DescurtirAvaliacao(Guid AvaliacaoId)
         {
             var resposta = _curtidaAppService.DescurtirAvaliacao(AvaliacaoId);
