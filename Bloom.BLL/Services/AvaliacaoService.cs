@@ -27,10 +27,17 @@ namespace Bloom.BLL.Services
         {
             return _avaliacaoRepository.GetAvaliacaoSerieId(SerieId);
         }
-
-        public List<Avaliacao> GetAvaliacoesByUsuarioId(Guid UsuarioId)
+        public List<Avaliacao> GetAvaliacoesFilmeByUsuarioId(Guid UsuarioId)
         {
-            return _avaliacaoRepository.GetAvaliacoesByUsuarioId(UsuarioId);
+            return _avaliacaoRepository.GetAvaliacaoFilmesId(UsuarioId);
+        }
+        public List<Avaliacao> GetAvaliacoesLivrosByUsuarioId(Guid UsuarioId)
+        {
+            return _avaliacaoRepository.GetAvaliacaoLivroId(UsuarioId);
+        }
+        public List<Avaliacao> GetAvaliacoesSeriesByUsuarioId(Guid UsuarioId)
+        {
+            return _avaliacaoRepository.GetAvaliacoesSeriesByUsuarioId(UsuarioId);
         }
     }
 }

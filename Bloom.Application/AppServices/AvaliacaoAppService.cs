@@ -302,12 +302,68 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
-        public ResponseUtil GetTodasAvaliacoesByUsuario(Guid UsuarioId)
+        public ResponseUtil GetAvaliacoesFilmeByUsuarioId(Guid UsuarioId)
         {
             var resposta = new ResponseUtil();
             try
             {
-                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesByUsuarioId(UsuarioId);
+                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesFilmeByUsuarioId(UsuarioId);
+                List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
+                avaliacoes.ForEach(x =>
+                {
+                    AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
+                    {
+                        AvaliacaoId = x.Id,
+                        UsuarioId = x.UsuarioId,
+                        Classificacao = x.Classificacao,
+                        Comentario = x.Texto
+                    };
+                    listAvaliacao.Add(avaliacaoResponse);
+                });
+                resposta.Resultado = listAvaliacao;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetAvaliacoesSerieByUsuarioId(Guid UsuarioId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesSeriesByUsuarioId(UsuarioId);
+                List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
+                avaliacoes.ForEach(x =>
+                {
+                    AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
+                    {
+                        AvaliacaoId = x.Id,
+                        UsuarioId = x.UsuarioId,
+                        Classificacao = x.Classificacao,
+                        Comentario = x.Texto
+                    };
+                    listAvaliacao.Add(avaliacaoResponse);
+                });
+                resposta.Resultado = listAvaliacao;
+                resposta.Sucesso = true;
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Sucesso = false;
+            }
+            return resposta;
+        }
+        public ResponseUtil GetAvaliacoesLivroByUsuarioId(Guid UsuarioId)
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesLivrosByUsuarioId(UsuarioId);
                 List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
                 avaliacoes.ForEach(x =>
                 {

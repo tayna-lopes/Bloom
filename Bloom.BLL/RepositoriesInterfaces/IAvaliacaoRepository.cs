@@ -10,6 +10,8 @@ namespace Bloom.BLL.RepositoriesInterfaces
         List<Avaliacao> GetAvaliacaoFilmesId(Guid FilmesId);
         List<Avaliacao> GetAvaliacaoSerieId(Guid SerieId);
         List<Avaliacao> GetAvaliacaoLivroId(Guid LivroId);
-        List<Avaliacao> GetAvaliacoesByUsuarioId(Guid UsuarioId);
+        List<Avaliacao> GetAvaliacoesFilmeByUsuarioId(Guid UsuarioId);
+        List<Avaliacao> GetAvaliacoesSeriesByUsuarioId(Guid UsuarioId);
+        List<Avaliacao> GetAvaliacoesLivrosByUsuarioId(Guid UsuarioId);
     }
 }
