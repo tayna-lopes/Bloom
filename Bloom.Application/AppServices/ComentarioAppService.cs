@@ -78,7 +78,7 @@ namespace Bloom.Application.AppServices
                     Usuario usuario = _usuarioService.GetById(model.UsuarioId);
                     
                     comentario.Texto = model.Texto;
-                    _comentarioService.Add(comentario);
+                    _comentarioService.Edit(comentario);
                     resposta.Resultado = "Comentario editado";
                     resposta.Sucesso = true;
                 }
@@ -125,11 +125,10 @@ namespace Bloom.Application.AppServices
                 List<ComentarioResponse> listComentarios = new List<ComentarioResponse>();
                 comentarios.ForEach(x =>
                {
-                   Usuario usuario = _usuarioService.GetById(x.Id);
                    ComentarioResponse comentario = new ComentarioResponse
                    {
                        Texto = x.Texto,
-                       Username = usuario.Username
+                       Username = x.Usuario.Username
                    };
                    listComentarios.Add(comentario);
                });

@@ -22,7 +22,7 @@ namespace Bloom.DAO.Repositories
 
         public List<Comentario> GetComentariosByAvaliacaoId(Guid AvaliacaoId)
         {
-            return _comentarios.Where(x => x.AvaliacaoId == AvaliacaoId).ToList();
+            return _comentarios.Where(x => x.AvaliacaoId == AvaliacaoId).Include(x => x.Usuario).ToList();
         }
     }
 }

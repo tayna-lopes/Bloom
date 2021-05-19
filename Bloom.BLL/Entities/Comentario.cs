@@ -15,5 +15,6 @@ namespace Bloom.BLL.Entities
         public Guid? LivroId { get; set; }
         public Guid AvaliacaoId { get; set; }
         public TipoAvaliacao TipoAvaliacao { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
