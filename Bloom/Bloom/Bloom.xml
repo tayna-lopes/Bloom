@@ -92,25 +92,9 @@
             <response code="200">bool</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
-        <member name="M:Bloom.Controllers.AvaliacaoController.GetAvaliacoesFilmeByUsuarioId(System.Guid)">
+        <member name="M:Bloom.Controllers.AvaliacaoController.GetAvaliacoesMidiaByUsuarioId(System.Guid,Bloom.BLL.Enums.TipoAvaliacao)">
             <summary>
             Buscar todas as avaliações de filme do usuário
-            </summary>
-            <returns>Sucesso e mensagem</returns>
-            <response code="200">bool</response>
-            <response code="400">Corpo da requisição inválido</response>  
-        </member>
-        <member name="M:Bloom.Controllers.AvaliacaoController.GetAvaliacoesSerieByUsuarioId(System.Guid)">
-            <summary>
-            Buscar todas as avaliações de serie do usuário
-            </summary>
-            <returns>Sucesso e mensagem</returns>
-            <response code="200">bool</response>
-            <response code="400">Corpo da requisição inválido</response>  
-        </member>
-        <member name="M:Bloom.Controllers.AvaliacaoController.GetAvaliacoesLivroByUsuarioId(System.Guid)">
-            <summary>
-            Buscar todas as avaliações de livro do usuário
             </summary>
             <returns>Sucesso e mensagem</returns>
             <response code="200">bool</response>

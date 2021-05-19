@@ -1,6 +1,7 @@
 ﻿using Bloom.Application.AppServicesInterfaces;
 using Bloom.Application.Models;
 using Bloom.BLL.Entities;
+using Bloom.BLL.Enums;
 using Bloom.BLL.ServicesInterfaces;
 using Bloom.BLL.Utils;
 using Cryptography;
@@ -302,68 +303,12 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
-        public ResponseUtil GetAvaliacoesFilmeByUsuarioId(Guid UsuarioId)
+        public ResponseUtil GetAvaliacoesMidiaByUsuarioId(Guid UsuarioId, TipoAvaliacao tipo)
         {
             var resposta = new ResponseUtil();
             try
             {
-                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesFilmeByUsuarioId(UsuarioId);
-                List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
-                avaliacoes.ForEach(x =>
-                {
-                    AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
-                    {
-                        AvaliacaoId = x.Id,
-                        UsuarioId = x.UsuarioId,
-                        Classificacao = x.Classificacao,
-                        Comentario = x.Texto
-                    };
-                    listAvaliacao.Add(avaliacaoResponse);
-                });
-                resposta.Resultado = listAvaliacao;
-                resposta.Sucesso = true;
-            }
-            catch (Exception e)
-            {
-                resposta.Resultado = e.Message;
-                resposta.Sucesso = false;
-            }
-            return resposta;
-        }
-        public ResponseUtil GetAvaliacoesSerieByUsuarioId(Guid UsuarioId)
-        {
-            var resposta = new ResponseUtil();
-            try
-            {
-                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesSeriesByUsuarioId(UsuarioId);
-                List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
-                avaliacoes.ForEach(x =>
-                {
-                    AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
-                    {
-                        AvaliacaoId = x.Id,
-                        UsuarioId = x.UsuarioId,
-                        Classificacao = x.Classificacao,
-                        Comentario = x.Texto
-                    };
-                    listAvaliacao.Add(avaliacaoResponse);
-                });
-                resposta.Resultado = listAvaliacao;
-                resposta.Sucesso = true;
-            }
-            catch (Exception e)
-            {
-                resposta.Resultado = e.Message;
-                resposta.Sucesso = false;
-            }
-            return resposta;
-        }
-        public ResponseUtil GetAvaliacoesLivroByUsuarioId(Guid UsuarioId)
-        {
-            var resposta = new ResponseUtil();
-            try
-            {
-                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacoesLivrosByUsuarioId(UsuarioId);
+                List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacaoMidia(UsuarioId, tipo);
                 List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
                 avaliacoes.ForEach(x =>
                 {

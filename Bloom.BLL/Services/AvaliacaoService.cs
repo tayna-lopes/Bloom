@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Bloom.BLL.Entities;
+using Bloom.BLL.Enums;
 using Bloom.BLL.RepositoriesInterfaces;
 using Bloom.BLL.ServicesInterfaces;
 
@@ -27,17 +28,10 @@ namespace Bloom.BLL.Services
         {
             return _avaliacaoRepository.GetAvaliacaoSerieId(SerieId);
         }
-        public List<Avaliacao> GetAvaliacoesFilmeByUsuarioId(Guid UsuarioId)
+        public List<Avaliacao> GetAvaliacaoMidia(Guid UsuarioId, TipoAvaliacao tipo)
         {
-            return _avaliacaoRepository.GetAvaliacaoFilmesId(UsuarioId);
+            return _avaliacaoRepository.GetAvaliacaoMidia(UsuarioId, tipo);
         }
-        public List<Avaliacao> GetAvaliacoesLivrosByUsuarioId(Guid UsuarioId)
-        {
-            return _avaliacaoRepository.GetAvaliacaoLivroId(UsuarioId);
-        }
-        public List<Avaliacao> GetAvaliacoesSeriesByUsuarioId(Guid UsuarioId)
-        {
-            return _avaliacaoRepository.GetAvaliacoesSeriesByUsuarioId(UsuarioId);
-        }
+
     }
 }

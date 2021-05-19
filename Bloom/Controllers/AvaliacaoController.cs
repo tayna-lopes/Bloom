@@ -115,10 +115,10 @@ namespace Bloom.Controllers
         /// <response code="200">bool</response>
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpGet]
-        [Route("GetAvaliacoesFilmeByUsuarioId")]
-        public IActionResult GetAvaliacoesFilmeByUsuarioId(Guid UsuarioId)
+        [Route("GetAvaliacoesMidiaByUsuarioId")]
+        public IActionResult GetAvaliacoesMidiaByUsuarioId(Guid UsuarioId, TipoAvaliacao tipo)
         {
-            var resposta = _avaliacaoAppService.GetAvaliacoesFilmeByUsuarioId(UsuarioId);
+            var resposta = _avaliacaoAppService.GetAvaliacoesMidiaByUsuarioId(UsuarioId,tipo);
             if (resposta.Sucesso)
             {
                 return Ok(resposta);
@@ -127,43 +127,6 @@ namespace Bloom.Controllers
             return BadRequest(resposta);
         }
 
-        /// <summary>
-        /// Buscar todas as avaliações de serie do usuário
-        /// </summary>
-        /// <returns>Sucesso e mensagem</returns>
-        /// <response code="200">bool</response>
-        /// <response code="400">Corpo da requisição inválido</response>  
-        [HttpGet]
-        [Route("GetAvaliacoesSerieByUsuarioId")]
-        public IActionResult GetAvaliacoesSerieByUsuarioId(Guid UsuarioId)
-        {
-            var resposta = _avaliacaoAppService.GetAvaliacoesSerieByUsuarioId(UsuarioId);
-            if (resposta.Sucesso)
-            {
-                return Ok(resposta);
-            }
-
-            return BadRequest(resposta);
-        }
-
-        /// <summary>
-        /// Buscar todas as avaliações de livro do usuário
-        /// </summary>
-        /// <returns>Sucesso e mensagem</returns>
-        /// <response code="200">bool</response>
-        /// <response code="400">Corpo da requisição inválido</response>  
-        [HttpGet]
-        [Route("GetAvaliacoesLivroByUsuarioId")]
-        public IActionResult GetAvaliacoesLivroByUsuarioId(Guid UsuarioId)
-        {
-            var resposta = _avaliacaoAppService.GetAvaliacoesLivroByUsuarioId(UsuarioId);
-            if (resposta.Sucesso)
-            {
-                return Ok(resposta);
-            }
-
-            return BadRequest(resposta);
-        }
 
 
     }
