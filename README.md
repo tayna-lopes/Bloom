@@ -7,6 +7,13 @@ Hex é um sistema de recomendação para Filmes, Séries e Livros, capaz de perm
 
 - [Google Drive](https://docs.google.com/document/d/1Y9OBStxLhUFeLMSjVm-x5jwOv0K-fd4m/edit?usp=drive_web&ouid=114800239921516594749&rtpof=true) - Plano de testes do back-end
 
+## Tecnologia usada
+````
+ .Net Core 3.1
+ Linguagem C#
+ ````
+
+
 #### Grupo Bloom: 
 > - Beatriz Novais - 31951155
 > - Danilo Cicero - 31803881
