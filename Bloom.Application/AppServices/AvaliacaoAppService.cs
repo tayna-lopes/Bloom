@@ -403,6 +403,30 @@ namespace Bloom.Application.AppServices
                     avaliacao.Classificacao = mediaFinal;
                     _avaliacaoService.Edit(avaliacao);
                 }
+                if(avaliacao.SerieId != null)
+                {
+                    List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacaoSerieId((Guid)avaliacao.SerieId);
+                    double media = 0;
+                    avaliacoes.ForEach(x =>
+                    {
+                        media += x.Classificacao;
+                    });
+                    double mediaFinal = media / avaliacoes.Count;
+                    avaliacao.Classificacao = mediaFinal;
+                    _avaliacaoService.Edit(avaliacao);
+                }
+                if (avaliacao.LivroId != null)
+                {
+                    List<Avaliacao> avaliacoes = _avaliacaoService.GetAvaliacaoLivroId((Guid)avaliacao.LivroId);
+                    double media = 0;
+                    avaliacoes.ForEach(x =>
+                    {
+                        media += x.Classificacao;
+                    });
+                    double mediaFinal = media / avaliacoes.Count;
+                    avaliacao.Classificacao = mediaFinal;
+                    _avaliacaoService.Edit(avaliacao);
+                }
             }
             catch(Exception e)
             {

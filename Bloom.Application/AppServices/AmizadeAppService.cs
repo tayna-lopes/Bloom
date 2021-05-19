@@ -177,7 +177,7 @@ namespace Bloom.Application.AppServices
                 List<Amizade> MinhasSolicitacoesList = _amizadeService.GetMeusConvitesDeAmizade(UsuarioId);
                 if (MinhasSolicitacoesList.Count == 0)
                 {
-                    resposta.Resultado = "Você bão tem nenhuma solicitação de amizade";
+                    resposta.Resultado = "Você não tem nenhuma solicitação de amizade";
                     resposta.Sucesso = false;
                     return resposta;
                 }
