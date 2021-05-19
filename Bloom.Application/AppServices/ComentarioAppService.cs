@@ -15,11 +15,13 @@ namespace Bloom.Application.AppServices
         private readonly IComentarioService _comentarioService;
         private readonly IAvaliacaoService _avaliacaoService;
         private readonly IUsuarioService _usuarioService;
-        public ComentarioAppService(IComentarioService comentarioService, IAvaliacaoService avaliacaoService, IUsuarioService usuarioService)
+        private readonly IAmizadeService _amizadeService;
+        public ComentarioAppService(IComentarioService comentarioService, IAvaliacaoService avaliacaoService, IUsuarioService usuarioService, IAmizadeService amizadeService)
         {
             _comentarioService = comentarioService;
             _avaliacaoService = avaliacaoService;
             _usuarioService = usuarioService;
+            _amizadeService = amizadeService;
         }
         public ResponseUtil ComentarioAvaliacao(NovoComentarioModel model)
         {
@@ -27,6 +29,13 @@ namespace Bloom.Application.AppServices
             try
             {
                 Avaliacao avaliacao = _avaliacaoService.GetById(model.AvaliacaoId);
+                Amizade amizade = _amizadeService.GetAmizadeByAmigosId(model.UsuarioId, avaliacao.UsuarioId);
+                if(amizade == null)
+                {
+                    resposta.Resultado = "Não é possivel comentar, pois usuários não são amigos";
+                    resposta.Sucesso = false;
+                    return resposta;
+                }
                 if (avaliacao != null)
                 {
                     Comentario comentario = new Comentario
@@ -41,7 +50,7 @@ namespace Bloom.Application.AppServices
                         TipoAvaliacao = avaliacao.TipoAvaliacao
                     };
                     _comentarioService.Add(comentario);
-                    resposta.Resultado = "Avaliação curtida";
+                    resposta.Resultado = "Avaliação comentada";
                     resposta.Sucesso = true;
                 }
             }
