@@ -25,6 +25,11 @@ namespace Bloom.Application.AppServicesInterfaces
             try
             {
                 Avaliacao avaliacao = _avaliacaoService.GetById(model.AvaliacaoId);
+                if(avaliacao == null)
+                {
+                    resposta.Resultado = "Avaliação não existe";
+                    resposta.Sucesso = true;
+                }
                 if(avaliacao != null)
                 {
                     Curtida novaCurtida = new Curtida
