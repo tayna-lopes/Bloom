@@ -1,4 +1,5 @@
 ﻿using Bloom.Application.Models;
+using Bloom.BLL.Entities;
 using Bloom.BLL.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace Bloom.Application.AppServicesInterfaces
     public interface IUsuarioAppService
     {
         ResponseUtil GetUserByUsername(string username);
+
+        Usuario GetUserByUsernameConvite(string username);
         ResponseUtil GetInformacoesUser(string userEmail);
         ResponseUtil AtualizarUsuario(UpdateUserModel model);
         ResponseUtil GraficoUsuariosByEstado();

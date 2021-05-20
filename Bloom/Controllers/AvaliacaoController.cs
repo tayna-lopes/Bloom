@@ -65,8 +65,11 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpDelete]
         [Route("DeletarAvaliacao")]
-        public IActionResult DeletarAvaliacao([FromBody] DeletarAvaliacaoModel model)
+        public IActionResult DeletarAvaliacao(string id, string av)
         {
+            DeletarAvaliacaoModel model = new DeletarAvaliacaoModel();
+            model.AvaliacaoId = Guid.Parse(av);
+            model.UsuarioId = Guid.Parse(id);
             var resposta = _avaliacaoAppService.DeletarAvaliacao(model);
             if (resposta.Sucesso)
             {

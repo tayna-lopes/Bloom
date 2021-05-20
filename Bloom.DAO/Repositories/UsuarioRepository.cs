@@ -25,7 +25,8 @@ namespace Bloom.DAO.Repositories
         }
         public Usuario GetByUsername(string username)
         {
-            return _usuarios.Where(x => x.Username == username).FirstOrDefault();
+            var user = _usuarios.Where(x => x.Username == username).FirstOrDefault();
+            return user;
         }
         public bool ValidarUsername(string username)
         {

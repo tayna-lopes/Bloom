@@ -58,6 +58,14 @@ namespace Bloom.Application.AppServices
             }
         }
 
+        public Usuario GetUserByUsernameConvite(string username)
+        {
+    
+                Usuario user = _usuarioService.GetByUsername(username);
+                 return user;
+             
+        }
+
         //Perfil
         public ResponseUtil GetInformacoesUser(string userEmail)
         {

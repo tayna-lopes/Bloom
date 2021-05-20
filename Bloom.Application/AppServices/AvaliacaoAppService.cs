@@ -17,13 +17,15 @@ namespace Bloom.Application.AppServices
         private readonly IFilmeService _filmeService;
         private readonly ISerieService _serieService;
         private readonly ILivroService _livroService;
+        private readonly ICurtidaService _curtidaService;
 
-        public AvaliacaoAppService(IAvaliacaoService avaliacaoService, IFilmeService filmeService, ISerieService serieService, ILivroService livroService)
+        public AvaliacaoAppService(IAvaliacaoService avaliacaoService, IFilmeService filmeService, ISerieService serieService, ILivroService livroService, ICurtidaService curtidaService)
         {
             _avaliacaoService = avaliacaoService;
             _filmeService = filmeService;
             _serieService = serieService;
             _livroService = livroService;
+            _curtidaService = curtidaService;
         }
 
         public ResponseUtil NovaAvaliacao(NovaAvaliacaoModel avaliacao)
@@ -312,6 +314,7 @@ namespace Bloom.Application.AppServices
                 List<AvaliacaoResponse> listAvaliacao = new List<AvaliacaoResponse>();
                 avaliacoes.ForEach(x =>
                 {
+                    
                     AvaliacaoResponse avaliacaoResponse = new AvaliacaoResponse
                     {
                         AvaliacaoId = x.Id,
@@ -319,6 +322,29 @@ namespace Bloom.Application.AppServices
                         Classificacao = x.Classificacao,
                         Comentario = x.Texto
                     };
+
+                    if(tipo == TipoAvaliacao.Filme)
+                    {
+                        var id  = Guid.Parse(x.FilmeId.ToString());
+                        var filme = _filmeService.GetById(id);
+                        avaliacaoResponse.Filme = filme;
+                    }
+                    if (tipo == TipoAvaliacao.Livro)
+                    {
+                        var id = Guid.Parse(x.LivroId.ToString());
+                        var livro = _livroService.GetById(id);
+                        avaliacaoResponse.Livro = livro;
+
+                    }
+                    if (tipo == TipoAvaliacao.Serie)
+                    {
+                        var id = Guid.Parse(x.SerieId.ToString());
+                        var serie = _serieService.GetById(id);
+                        avaliacaoResponse.Serie = serie;
+                    }
+
+                    var curtidas = _curtidaService.GetCurtidasAvaliacaoId(x.Id);
+                    avaliacaoResponse.Curtidas = curtidas.Count;
                     listAvaliacao.Add(avaliacaoResponse);
                 });
                 resposta.Resultado = listAvaliacao;

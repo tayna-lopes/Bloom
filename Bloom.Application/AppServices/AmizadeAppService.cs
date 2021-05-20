@@ -14,11 +14,14 @@ namespace Bloom.Application.AppServices
     {
         private readonly IAmizadeService _amizadeService;
         private readonly IUsuarioService _usuarioService;
+        private readonly IUsuarioAppService _usuarioAppService;
 
-        public AmizadeAppService(IAmizadeService amizadeService, IUsuarioService usuarioService)
+        public AmizadeAppService(IAmizadeService amizadeService, IUsuarioService usuarioService,
+            IUsuarioAppService usuarioAppService)
         {
             _amizadeService = amizadeService;
             _usuarioService = usuarioService;
+            _usuarioAppService = usuarioAppService;
         }
 
         public ResponseUtil Convite(ConviteModel model)
@@ -26,7 +29,7 @@ namespace Bloom.Application.AppServices
             var resposta = new ResponseUtil();
             try
             {
-                Usuario convidante = _usuarioService.GetByUsername(model.ConvidanteUsername);
+                var convidante = _usuarioAppService.GetUserByUsernameConvite(model.ConvidanteUsername);
                 if(convidante == null)
                 {
                     resposta.Resultado = "Usuario não encontrado";
@@ -34,7 +37,7 @@ namespace Bloom.Application.AppServices
                     return resposta;
                 }
 
-                Usuario convidado = _usuarioService.GetByUsername(model.ConvidadoUsername);
+                Usuario convidado = _usuarioAppService.GetUserByUsernameConvite(model.ConvidadoUsername);
                 if (convidado == null)
                 {
                     resposta.Resultado = "Usuario não encontrado";
