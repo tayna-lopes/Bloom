@@ -63,7 +63,7 @@ namespace Bloom.Controllers
         /// <returns>Sucesso e mensagem</returns>
         /// <response code="200">bool</response>
         /// <response code="400">Corpo da requisição inválido</response>  
-        [HttpDelete]
+        [HttpPost]
         [Route("DesfazerAmizade")]
         public IActionResult DesfazerAmizade([FromBody] ConviteModel model)
         {
