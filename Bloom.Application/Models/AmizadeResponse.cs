@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Bloom.Application.Models
 {
-    public class MaisConectadosResponse
+    public class AmizadeResponse
     {
-        public int NumeroDeAmigos { get; set; }
+        public Guid AmigoId { get; set; }
+        public string Nome { get; set; }
         public string Username { get; set; }
         public string Foto { get; set; }
     }

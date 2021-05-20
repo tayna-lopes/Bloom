@@ -22,5 +22,6 @@ namespace Bloom.Application.AppServicesInterfaces
         ResponseUtil AprovarRecusarFilmes(Guid FilmeId, bool Aprovar);
         ResponseUtil GetLivrosParaAprovacao();
         ResponseUtil AprovarRecusarLivro(Guid LivroId, bool Aprovar);
+        ResponseUtil GetMediaDeAmigos();
     }
 }

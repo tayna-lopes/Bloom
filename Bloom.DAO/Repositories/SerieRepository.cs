@@ -23,8 +23,8 @@ namespace Bloom.DAO.Repositories
 
         public List<Serie> GetAdicionadosRecentemente()
         {
-            var sday = DateTime.Now.Date.AddDays(-10);
-            return _series.Where(x => x.Adicionado.Date == sday).ToList();
+            var sday = DateTime.Now;
+            return _series.Where(x => x.Adicionado.Date <= sday).ToList();
         }
         public List<Serie> GetAllSeriesByUsuarioId(Guid UsuarioId)
         {

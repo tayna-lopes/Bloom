@@ -356,7 +356,8 @@ namespace Bloom.Application.AppServices
                 }
 
                 response.Sucesso = true;
-                response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
+                //response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
+                response.Resultado = fileName;
             }
             catch (Exception e)
             {

@@ -176,7 +176,8 @@ namespace Bloom.Application.AppServices
                 }
 
                 response.Sucesso = true;
-                response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
+                //response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
+                response.Resultado = fileName;
             }
             catch (Exception e)
             {
@@ -243,7 +244,8 @@ namespace Bloom.Application.AppServices
                    MaisConectadosResponse maisConectadoResponse = new MaisConectadosResponse
                    {
                        NumeroDeAmigos = amizadesList.Count,
-                       Username = x.Username
+                       Username = x.Username,
+                       Foto = x.Foto
                    };
 
                    maisConectadosResponses.Add(maisConectadoResponse);
@@ -258,6 +260,36 @@ namespace Bloom.Application.AppServices
                 resposta.Resultado = e;
                 return resposta;
             }
+        }
+        public ResponseUtil GetMediaDeAmigos()
+        {
+            var resposta = new ResponseUtil();
+            try
+            {
+                List<Usuario> AllUsersList = _usuarioService.GetAllUsuarios();
+                List<int> numeroAmigosList = new List<int>();
+
+                AllUsersList.ForEach(x =>
+                {
+                    var numero = _amizadeService.GetMeusAmigos(x.UsuarioId);
+                    numeroAmigosList.Add(numero.Count);
+                });
+                var media = 0;
+                numeroAmigosList.ForEach(x =>
+                {
+                    media += x;
+                });
+                var mediaTotal = media / AllUsersList.Count;
+                resposta.Sucesso = true;
+                resposta.Resultado = mediaTotal;
+
+            }
+            catch (Exception e)
+            {
+                resposta.Resultado = e.Message;
+                resposta.Resultado = false;
+            }
+            return resposta;
         }
 
         //Serie

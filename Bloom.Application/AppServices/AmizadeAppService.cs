@@ -156,13 +156,43 @@ namespace Bloom.Application.AppServices
             try
             {
                 List<Amizade> MeusAmigosList = _amizadeService.GetMeusAmigos(UsuarioId);
+                List<AmizadeResponse> amizadeResponses = new List<AmizadeResponse>();
+                MeusAmigosList.ForEach(x =>
+                {
+                    if(UsuarioId == x.ConvidadoId)
+                    {
+                        Usuario usuario = _usuarioService.GetById(x.ConvidanteId);
+                        AmizadeResponse amizadeResponse = new AmizadeResponse
+                        {
+                            AmigoId = x.ConvidanteId,
+                            Nome = usuario.Nome,
+                            Foto = usuario.Foto,
+                            Username = usuario.Username
+                        };
+                        amizadeResponses.Add(amizadeResponse);
+                    }
+                    if (UsuarioId == x.ConvidanteId)
+                    {
+                        Usuario usuario = _usuarioService.GetById(x.ConvidadoId);
+                        AmizadeResponse amizadeResponse = new AmizadeResponse
+                        {
+                            AmigoId = x.ConvidadoId,
+                            Nome = usuario.Nome,
+                            Foto = usuario.Foto,
+                            Username = usuario.Username
+                        };
+                        amizadeResponses.Add(amizadeResponse);
+                    }
+
+                });
+
                 if(MeusAmigosList.Count == 0)
                 {
                     resposta.Resultado = "Você ainda não tem nenhum amigo";
                     resposta.Sucesso = false;
                     return resposta;
                 }
-                resposta.Resultado = MeusAmigosList;
+                resposta.Resultado = amizadeResponses;
                 resposta.Sucesso = true;
             }
             catch (Exception e)
@@ -178,13 +208,42 @@ namespace Bloom.Application.AppServices
             try
             {
                 List<Amizade> MinhasSolicitacoesList = _amizadeService.GetMeusConvitesDeAmizade(UsuarioId);
+                List<AmizadeResponse> amizadeResponses = new List<AmizadeResponse>();
+                MinhasSolicitacoesList.ForEach(x =>
+                {
+                    if (UsuarioId == x.ConvidadoId)
+                    {
+                        Usuario usuario = _usuarioService.GetById(x.ConvidanteId);
+                        AmizadeResponse amizadeResponse = new AmizadeResponse
+                        {
+                            AmigoId = x.ConvidanteId,
+                            Nome = usuario.Nome,
+                            Foto = usuario.Foto,
+                            Username = usuario.Username
+                        };
+                        amizadeResponses.Add(amizadeResponse);
+                    }
+                    if (UsuarioId == x.ConvidanteId)
+                    {
+                        Usuario usuario = _usuarioService.GetById(x.ConvidadoId);
+                        AmizadeResponse amizadeResponse = new AmizadeResponse
+                        {
+                            AmigoId = x.ConvidadoId,
+                            Nome = usuario.Nome,
+                            Foto = usuario.Foto,
+                            Username = usuario.Username
+                        };
+                        amizadeResponses.Add(amizadeResponse);
+                    }
+
+                });
                 if (MinhasSolicitacoesList.Count == 0)
                 {
                     resposta.Resultado = "Você não tem nenhuma solicitação de amizade";
                     resposta.Sucesso = false;
                     return resposta;
                 }
-                resposta.Resultado = MinhasSolicitacoesList;
+                resposta.Resultado = amizadeResponses;
                 resposta.Sucesso = true;
             }
             catch (Exception e)
@@ -194,5 +253,6 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
+        
     }
 }

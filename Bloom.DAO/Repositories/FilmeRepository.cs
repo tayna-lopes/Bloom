@@ -30,8 +30,8 @@ namespace Bloom.DAO.Repositories
         }
         public List<Filme> GetAdicionadosRecentemente()
         {
-            var sday = DateTime.Now.Date.AddDays(-10);
-            return _filmes.Where(x => x.Adicionado.Date == sday).ToList();
+            var sday = DateTime.Now;
+            return _filmes.Where(x => x.Adicionado.Date <= sday).ToList();
         }
         public List<Filme> GetFilmesParaAprovacao()
         {

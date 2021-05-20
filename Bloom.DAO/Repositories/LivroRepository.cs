@@ -31,8 +31,8 @@ namespace Bloom.DAO.Repositories
         }
         public List<Livro> GetAdicionadosRecentemente()
         {
-            var sday = DateTime.Now.Date.AddDays(-10);
-            return _livros.Where(x => x.Adicionado.Date == sday).ToList();
+            var sday = DateTime.Now;
+            return _livros.Where(x => x.Adicionado.Date <= sday).ToList();
         }
         public List<Livro> GetLivrosParaAprovacao()
         {

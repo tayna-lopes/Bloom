@@ -78,6 +78,25 @@ namespace Bloom.Controllers
             return BadRequest(resposta);
         }
 
+        /// <summary>
+        /// Retorna a média de amigos
+        /// </summary>
+        /// <returns>Token de autenticação</returns>
+        /// <response code="200">Token</response>
+        /// <response code="400">Corpo da requisição inválido</response>  
+        [HttpGet]
+        [Route("GetMediaDeAmigos")]
+        public IActionResult GetMediaDeAmigos()
+        {
+            var resposta = _usuarioAppService.GetMediaDeAmigos();
+            if (resposta.Sucesso)
+            {
+                return Ok(resposta);
+            }
+
+            return BadRequest(resposta);
+        }
+
         //Admin
         /// <summary>
         /// Dados para o gráfico de visualização do admin

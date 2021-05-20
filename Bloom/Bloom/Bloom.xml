@@ -76,7 +76,7 @@
             <response code="200">bool</response>
             <response code="400">Corpo da requisição inválido</response>  
         </member>
-        <member name="M:Bloom.Controllers.AvaliacaoController.DeletarAvaliacao(Bloom.Application.Models.DeletarAvaliacaoModel)">
+        <member name="M:Bloom.Controllers.AvaliacaoController.DeletarAvaliacao(System.String,System.String)">
             <summary>
             Excluir avaliação
             </summary>
@@ -319,6 +319,14 @@
         <member name="M:Bloom.Controllers.UsuarioController.AtualizarUsuario(Bloom.Application.Models.UpdateUserModel)">
             <summary>
             Atualiza as informações do usuário
+            </summary>
+            <returns>Token de autenticação</returns>
+            <response code="200">Token</response>
+            <response code="400">Corpo da requisição inválido</response>  
+        </member>
+        <member name="M:Bloom.Controllers.UsuarioController.GetMediaDeAmigos">
+            <summary>
+            Retorna a média de amigos
             </summary>
             <returns>Token de autenticação</returns>
             <response code="200">Token</response>
