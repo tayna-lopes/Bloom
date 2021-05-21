@@ -162,7 +162,7 @@ namespace Bloom.Application.AppServices
                 string dir = Directory.GetCurrentDirectory();
                 dir += ".BLL";
                 //dir = dir.Replace("Bloom", "Bloom.BLL");
-                string insideDir = "/Assets/UserImages/";
+                string insideDir = "/Assets/MoviesImages/";
                 string path = dir + insideDir;
 
 

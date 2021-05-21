@@ -342,7 +342,7 @@ namespace Bloom.Application.AppServices
             {
                 string dir = Directory.GetCurrentDirectory();
                 dir += ".BLL";
-                string insideDir = "/Assets/BooksImages/";
+                string insideDir = "/Assets/MoviesImages/";
                 string path = dir + insideDir;
 
 
