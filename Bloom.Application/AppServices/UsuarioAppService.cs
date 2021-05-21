@@ -465,7 +465,7 @@ namespace Bloom.Application.AppServices
                 };
 
                 List<LivroResponse> livroResponses = new List<LivroResponse>();
-                foreach (var livro in livroResponses)
+                foreach (var livro in livros)
                 {
                     Usuario usuario = _usuarioService.GetById(livro.UsuarioId);
                     LivroResponse livroResponse = new LivroResponse
