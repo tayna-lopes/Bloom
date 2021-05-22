@@ -94,7 +94,7 @@ namespace Bloom.Application.AppServices
             ResponseUtil resposta = new ResponseUtil();
             try
             {
-                Usuario user = _usuarioService.GetByEmail(model.userEmail);
+                Usuario user = _usuarioService.GetById(model.UsuarioId);
                 if (user == null)
                 {
                     resposta.Resultado = "Este usuário não existe";

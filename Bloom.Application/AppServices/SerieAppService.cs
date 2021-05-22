@@ -329,26 +329,5 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
-        //public ResponseUtil DownloadImage(IFormFile file)
-        //{
-        //    ResponseUtil resposta = new ResponseUtil();
-        //    try
-        //    {
-        //        using (var ms = new MemoryStream())
-        //        {
-        //            file.CopyTo(ms);
-        //            var fileBytes = ms.ToArray();
-        //            string s = Convert.ToBase64String(fileBytes);
-        //            resposta.Resultado = s;
-        //            resposta.Sucesso = true;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        resposta.Resultado = e;
-        //        resposta.Sucesso = false;
-        //    }
-        //    return resposta;
-        //}
     }
 }

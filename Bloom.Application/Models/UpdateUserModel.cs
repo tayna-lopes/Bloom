@@ -7,6 +7,7 @@ namespace Bloom.Application.Models
 {
     public class UpdateUserModel
     {
+        public Guid UsuarioId { get; set; }
         public string userEmail { get; set; }
         public string Foto { get; set; }
         public string Nome { get; set; }

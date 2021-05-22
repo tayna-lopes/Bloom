@@ -189,7 +189,8 @@ namespace Bloom.Application.AppServices
                             Pais = x.Pais,
                             Username = usuario.Username,
                             Classificacao = x.Classificacao,
-                            FilmeId = x.Id
+                            FilmeId = x.Id,
+                            Foto = x.Foto
                         };
                         filmesResponse.Add(filmeResponse);
                     }
