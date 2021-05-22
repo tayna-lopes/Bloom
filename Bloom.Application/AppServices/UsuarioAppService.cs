@@ -57,35 +57,12 @@ namespace Bloom.Application.AppServices
                 return resposta;
             }
         }
-
         public Usuario GetUserByUsernameConvite(string username)
         {
     
                 Usuario user = _usuarioService.GetByUsername(username);
                  return user;
              
-        }
-
-        public ResponseUtil DownloadImage(IFormFile file)
-        {
-            ResponseUtil resposta = new ResponseUtil();
-            try
-            {
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    string s = Convert.ToBase64String(fileBytes);
-                    resposta.Resultado = s;
-
-                }
-            }
-            catch(Exception e)
-            {
-                resposta.Resultado = e;
-                resposta.Sucesso = false;
-            }
-            return resposta;
         }
 
         //Perfil
@@ -127,11 +104,7 @@ namespace Bloom.Application.AppServices
 
                 if (model.Foto != null)
                 {
-                    ResponseUtil resultImg = DownloadImage(model.Foto);
-                    if (resultImg.Sucesso)
-                    {
-                        user.Foto = resultImg.Resultado.ToString();
-                    }
+                    user.Foto = model.Foto;
                 }
 
                 if (model.Nome != null)
@@ -175,42 +148,6 @@ namespace Bloom.Application.AppServices
                 return resposta;
             }
         }
-        //public async Task<ResponseUtil> DownloadImage(IFormFile file, string userId)
-        //{
-        //    var response = new ResponseUtil();
-
-        //    try
-        //    {
-        //        string dir = Directory.GetCurrentDirectory();
-        //        dir += ".BLL";
-        //        //dir = dir.Replace("Bloom", "Bloom.BLL");
-        //        string insideDir = "/Assets/MoviesImages/";
-        //        string path = dir + insideDir;
-
-
-        //        string[] subs = file.FileName.Split('.');
-        //        var fileName = $"{userId}.{subs[1]}";
-
-        //        string filePath = Path.Combine(path, fileName);
-        //        using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(fileStream);
-        //        }
-
-        //        response.Sucesso = true;
-        //        //response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
-        //        response.Resultado = fileName;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        response.Resultado = "Erro ao adicionar a imagem";
-        //        response.Sucesso = false;
-        //    }
-
-        //    return response;
-        //}
-
-        //Admin
         public ResponseUtil GraficoUsuariosByEstado()
         {
             ResponseUtil resposta = new ResponseUtil();

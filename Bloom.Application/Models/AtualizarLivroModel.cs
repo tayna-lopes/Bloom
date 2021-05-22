@@ -8,7 +8,7 @@ namespace Bloom.Application.Models
 {
     public class AtualizarLivroModel
     {
-        public IFormFile Foto { get; set; }
+        public string Foto { get; set; }
         public string Editora { get; set; }
         public string Titulo { get; set; }
         public List<string> Autores { get; set; }

@@ -39,19 +39,10 @@ namespace Bloom.Application.AppServices
                 };
                 var elenco = String.Join(", ", model.Elenco);
 
-                Guid MovieId = Guid.NewGuid();
-                string Foto = string.Empty;
-
-                ResponseUtil resultImg = DownloadImage(model.Foto);
-                if (resultImg.Sucesso)
-                {
-                    Foto = resultImg.Resultado.ToString();
-                }
-
                 Filme filme = new Filme
                 {
-                    Id = MovieId,
-                    Foto = Foto,
+                    Id = Guid.NewGuid(),
+                    Foto = model.Foto,
                     UsuarioId = model.UsuarioId,
                     Titulo = model.Titulo,
                     Diretor = model.Diretor,
@@ -90,11 +81,7 @@ namespace Bloom.Application.AppServices
 
                 if (model.Foto != null)
                 {
-                    ResponseUtil resultImg = DownloadImage(model.Foto);
-                    if (resultImg.Sucesso)
-                    {
-                        filme.Foto = resultImg.Resultado.ToString();
-                    }
+                    filme.Foto = model.Foto;
                 }
 
                 if (model.Titulo != null)
@@ -332,27 +319,6 @@ namespace Bloom.Application.AppServices
             {
                 resposta.Sucesso = false;
                 resposta.Resultado = e.Message;
-            }
-            return resposta;
-        }
-        public ResponseUtil DownloadImage(IFormFile file)
-        {
-            ResponseUtil resposta = new ResponseUtil();
-            try
-            {
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    string s = Convert.ToBase64String(fileBytes);
-                    resposta.Resultado = s;
-                    resposta.Sucesso = true;
-                }
-            }
-            catch (Exception e)
-            {
-                resposta.Resultado = e;
-                resposta.Sucesso = false;
             }
             return resposta;
         }

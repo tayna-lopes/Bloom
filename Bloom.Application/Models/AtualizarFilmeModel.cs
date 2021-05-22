@@ -9,7 +9,7 @@ namespace Bloom.Application.Models
     public class AtualizarFilmeModel
     {
         public string Diretor { get; set; }
-        public IFormFile Foto { get; set; }
+        public string Foto { get; set; }
         public string Titulo { get; set; }
         public List<string> Elenco { get; set; }
         public string Pais { get; set; }

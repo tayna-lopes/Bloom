@@ -39,18 +39,10 @@ namespace Bloom.Application.AppServices
                 };
                 var elenco = String.Join(", ", model.Elenco);
 
-                Guid SerieId = Guid.NewGuid();
-                string Foto = string.Empty;
-
-                //ResponseUtil resultImg = DownloadImage(model.Foto);
-                //if (resultImg.Sucesso)
-                //{
-                //    Foto = resultImg.Resultado.ToString();
-                //}
                 Serie serie = new Serie
                 {
-                    Id = SerieId,
-                    Foto = Foto,
+                    Id = Guid.NewGuid(),
+                    Foto = model.Foto,
                     UsuarioId = model.UsuarioId,
                     Titulo = model.Titulo,
                     Diretor = model.Diretor,
@@ -90,11 +82,6 @@ namespace Bloom.Application.AppServices
 
                 if(model.Foto != null)
                 {
-                    //ResponseUtil resultImg = DownloadImage(model.Foto);
-                    //if (resultImg.Sucesso)
-                    //{
-                    //    serie.Foto = resultImg.Resultado.ToString();
-                    //}
                     serie.Foto = model.Foto;
                 }
                 if (model.Titulo != null)
