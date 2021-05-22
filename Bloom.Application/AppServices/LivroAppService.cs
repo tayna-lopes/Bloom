@@ -345,6 +345,7 @@ namespace Bloom.Application.AppServices
                     var fileBytes = ms.ToArray();
                     string s = Convert.ToBase64String(fileBytes);
                     resposta.Resultado = s;
+                    resposta.Sucesso = true;
                 }
             }
             catch (Exception e)
