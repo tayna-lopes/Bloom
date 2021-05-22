@@ -42,7 +42,7 @@ namespace Bloom.Application.AppServices
                 Guid MovieId = Guid.NewGuid();
                 string Foto = string.Empty;
 
-                ResponseUtil resultImg = DownloadImage(model.Foto, MovieId.ToString()).Result;
+                ResponseUtil resultImg = DownloadImage(model.Foto);
                 if (resultImg.Sucesso)
                 {
                     Foto = resultImg.Resultado.ToString();
@@ -90,7 +90,7 @@ namespace Bloom.Application.AppServices
 
                 if (model.Foto != null)
                 {
-                    ResponseUtil resultImg = DownloadImage(model.Foto, filme.Id.ToString()).Result;
+                    ResponseUtil resultImg = DownloadImage(model.Foto);
                     if (resultImg.Sucesso)
                     {
                         filme.Foto = resultImg.Resultado.ToString();
@@ -335,38 +335,25 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
-        public async Task<ResponseUtil> DownloadImage(IFormFile file, string MovieId)
+        public ResponseUtil DownloadImage(IFormFile file)
         {
-            var response = new ResponseUtil();
-
+            ResponseUtil resposta = new ResponseUtil();
             try
             {
-                string dir = Directory.GetCurrentDirectory();
-                dir += ".BLL";
-                string insideDir = "/Assets/MoviesImages/";
-                string path = dir + insideDir;
-
-
-                string[] subs = file.FileName.Split('.');
-                var fileName = $"{MovieId}.{subs[1]}";
-
-                string filePath = Path.Combine(path, fileName);
-                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                using (var ms = new MemoryStream())
                 {
-                    await file.CopyToAsync(fileStream);
+                    file.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    string s = Convert.ToBase64String(fileBytes);
+                    resposta.Resultado = s;
                 }
-
-                response.Sucesso = true;
-                //response.Resultado = "Bloom/Bloom.BLL" + insideDir + fileName;
-                response.Resultado = fileName; ;
             }
             catch (Exception e)
             {
-                response.Resultado = "Erro ao adicionar a imagem";
-                response.Sucesso = false;
+                resposta.Resultado = e;
+                resposta.Sucesso = false;
             }
-
-            return response;
+            return resposta;
         }
     }
 }

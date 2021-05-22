@@ -1,6 +1,7 @@
 ﻿using Bloom.Application.AppServicesInterfaces;
 using Bloom.Application.Models;
 using Bloom.BLL.Utils;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -229,7 +230,5 @@ namespace Bloom.Controllers
 
             return BadRequest(resposta);
         }
-
-
     }
 }
