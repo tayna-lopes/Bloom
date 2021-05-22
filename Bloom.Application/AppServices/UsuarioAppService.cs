@@ -113,15 +113,24 @@ namespace Bloom.Application.AppServices
                 }
                 if (model.Username != null)
                 {
-                    if (!_usuarioService.ValidarUsername(model.Username))
+                    if (model.Username == user.Username)
                     {
-                        resposta.Resultado = "Este username já está sendo usado";
-                        resposta.Sucesso = false;
-                        return resposta;
+                        model.Username = user.Username;
                     }
-                    else
+                   else
                     {
-                        user.Username = model.Username;
+                        var valida = _usuarioService.ValidarUsername(model.Username);
+                        if (valida)
+                        {
+                            resposta.Resultado = "Este username já está sendo usado";
+                            resposta.Sucesso = false;
+                            return resposta;
+                        }
+                        else
+                        {
+                            user.Username = model.Username;
+                        }
+                       
                     }
                 }
                 if (model.Estado != null)
