@@ -32,17 +32,8 @@ namespace Bloom
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder
-                                      .AllowAnyOrigin()
-                                      .AllowAnyMethod()
-                                      .AllowAnyHeader();
-                                  });
-            });
+            services.AddControllers();
+            services.AddCors();
 
             Bindings.ConfigureServices(services,Configuration.GetConnectionString("SQLConnectionString"));
 
@@ -68,6 +59,7 @@ namespace Bloom
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
 
             ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
             app.UseSwagger();
@@ -78,7 +70,10 @@ namespace Bloom
             });
 
             app.UseHttpsRedirection();
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(c => c.AllowAnyOrigin()
+                             .AllowAnyMethod()
+                             .AllowAnyHeader()
+           );
             app.UseMvc();
         }
     }
