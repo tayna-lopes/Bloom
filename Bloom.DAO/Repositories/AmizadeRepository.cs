@@ -22,7 +22,7 @@ namespace Bloom.DAO.Repositories
 
         public List<Amizade> GetMeusAmigos(Guid UsuarioId)
         {
-            return _amizades.Where(x => x.ConvidadoId == UsuarioId || x.ConvidanteId == UsuarioId && x.Status == StatusAmizade.Aceita)
+            return _amizades.Where(x => x.ConvidadoId == UsuarioId && x.Status == StatusAmizade.Aceita || x.ConvidanteId == UsuarioId && x.Status == StatusAmizade.Aceita)
                 .Include(x => x.Convidado)
                 .ToList();
         }
