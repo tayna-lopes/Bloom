@@ -8,5 +8,7 @@ namespace Bloom.Application.Models
     {
         public string ConvidanteUsername { get; set; }
         public string ConvidadoUsername { get; set; }
+
+        public bool aceita { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace Bloom.Controllers
         [Route("AceitarRecusarAmizade")]
         public IActionResult AceitarRecusarAmizade([FromBody] ConviteModel model, bool AceitarAmizade)
         {
-            var resposta = _amizadeAppService.AceitarRecusarConvite(model, AceitarAmizade);
+            var resposta = _amizadeAppService.AceitarRecusarConvite(model, model.aceita);
             if (resposta.Sucesso)
             {
                 return Ok(resposta);
