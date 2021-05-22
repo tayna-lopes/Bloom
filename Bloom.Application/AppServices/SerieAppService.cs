@@ -42,11 +42,11 @@ namespace Bloom.Application.AppServices
                 Guid SerieId = Guid.NewGuid();
                 string Foto = string.Empty;
 
-                ResponseUtil resultImg = DownloadImage(model.Foto);
-                if (resultImg.Sucesso)
-                {
-                    Foto = resultImg.Resultado.ToString();
-                }
+                //ResponseUtil resultImg = DownloadImage(model.Foto);
+                //if (resultImg.Sucesso)
+                //{
+                //    Foto = resultImg.Resultado.ToString();
+                //}
                 Serie serie = new Serie
                 {
                     Id = SerieId,
@@ -90,11 +90,12 @@ namespace Bloom.Application.AppServices
 
                 if(model.Foto != null)
                 {
-                    ResponseUtil resultImg = DownloadImage(model.Foto);
-                    if (resultImg.Sucesso)
-                    {
-                        serie.Foto = resultImg.Resultado.ToString();
-                    }
+                    //ResponseUtil resultImg = DownloadImage(model.Foto);
+                    //if (resultImg.Sucesso)
+                    //{
+                    //    serie.Foto = resultImg.Resultado.ToString();
+                    //}
+                    serie.Foto = model.Foto;
                 }
                 if (model.Titulo != null)
                 {
@@ -341,26 +342,26 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
-        public ResponseUtil DownloadImage(IFormFile file)
-        {
-            ResponseUtil resposta = new ResponseUtil();
-            try
-            {
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    string s = Convert.ToBase64String(fileBytes);
-                    resposta.Resultado = s;
-                    resposta.Sucesso = true;
-                }
-            }
-            catch (Exception e)
-            {
-                resposta.Resultado = e;
-                resposta.Sucesso = false;
-            }
-            return resposta;
-        }
+        //public ResponseUtil DownloadImage(IFormFile file)
+        //{
+        //    ResponseUtil resposta = new ResponseUtil();
+        //    try
+        //    {
+        //        using (var ms = new MemoryStream())
+        //        {
+        //            file.CopyTo(ms);
+        //            var fileBytes = ms.ToArray();
+        //            string s = Convert.ToBase64String(fileBytes);
+        //            resposta.Resultado = s;
+        //            resposta.Sucesso = true;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        resposta.Resultado = e;
+        //        resposta.Sucesso = false;
+        //    }
+        //    return resposta;
+        //}
     }
 }
