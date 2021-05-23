@@ -289,7 +289,8 @@ namespace Bloom.Application.AppServices
                         Username = usuario.Username,
                         NumeroDeTemporadas = serie.NumeroDeTemporadas,
                         Classificacao = serie.Classificacao,
-                        Id = serie.Id
+                        Id = serie.Id,
+                        Foto = serie.Foto
                     };
                     seriesResponses.Add(serieResponse);
 

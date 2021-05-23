@@ -54,17 +54,11 @@ namespace Bloom.Application.AppServices
                     };
                     _avaliacaoService.Add(novaAvaliacao);
 
+
                     List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoLivroId(livro.Id);
                     if(notas.Count > 1)
                     {
-                        double media = 0;
-                        notas.ForEach(x =>
-                        {
-                            media += x.Classificacao;
-                        });
-                        double mediaFinal = media / notas.Count;
-                        novaAvaliacao.Classificacao = mediaFinal;
-                        _avaliacaoService.Edit(novaAvaliacao);
+                        AtualizarClassificacao((Guid)novaAvaliacao.LivroId);
                     };
 
                     resposta.Resultado = "Sua avaliação de livro foi adicionada";
@@ -93,14 +87,7 @@ namespace Bloom.Application.AppServices
                     List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoFilmesId(filme.Id);
                     if (notas.Count > 1)
                     {
-                        double media = 0;
-                        notas.ForEach(x =>
-                        {
-                            media += x.Classificacao;
-                        });
-                        double mediaFinal = media / notas.Count;
-                        novaAvaliacao.Classificacao = mediaFinal;
-                        _avaliacaoService.Edit(novaAvaliacao);
+                        AtualizarClassificacao((Guid)novaAvaliacao.FilmeId);
                     };
 
                     resposta.Resultado = "Sua avaliação de filme foi adicionada";
@@ -129,14 +116,7 @@ namespace Bloom.Application.AppServices
                     List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoFilmesId(serie.Id);
                     if (notas.Count > 1)
                     {
-                        double media = 0;
-                        notas.ForEach(x =>
-                        {
-                            media += x.Classificacao;
-                        });
-                        double mediaFinal = media / notas.Count;
-                        novaAvaliacao.Classificacao = mediaFinal;
-                        _avaliacaoService.Edit(novaAvaliacao);
+                        AtualizarClassificacao((Guid)novaAvaliacao.SerieId);
                     };
                     resposta.Resultado = "Sua avaliação de serie foi adicionada";
                     resposta.Sucesso = true;
@@ -371,8 +351,10 @@ namespace Bloom.Application.AppServices
                        media += x.Classificacao;
                    });
                     double mediaFinal = media / avaliacoes.Count;
-                    avaliacao.Classificacao = mediaFinal;
-                    _avaliacaoService.Edit(avaliacao);
+                    
+                    Filme filme = _filmeService.GetById((Guid)avaliacao.FilmeId);
+                    filme.Classificacao = mediaFinal;
+                    _filmeService.Edit(filme);
                 }
                 if(avaliacao.SerieId != null)
                 {
@@ -383,8 +365,10 @@ namespace Bloom.Application.AppServices
                         media += x.Classificacao;
                     });
                     double mediaFinal = media / avaliacoes.Count;
-                    avaliacao.Classificacao = mediaFinal;
-                    _avaliacaoService.Edit(avaliacao);
+
+                    Serie serie = _serieService.GetById((Guid)avaliacao.SerieId);
+                    serie.Classificacao = mediaFinal;
+                    _serieService.Edit(serie);
                 }
                 if (avaliacao.LivroId != null)
                 {
@@ -395,8 +379,10 @@ namespace Bloom.Application.AppServices
                         media += x.Classificacao;
                     });
                     double mediaFinal = media / avaliacoes.Count;
-                    avaliacao.Classificacao = mediaFinal;
-                    _avaliacaoService.Edit(avaliacao);
+
+                    Livro livro = _livroService.GetById((Guid)avaliacao.LivroId);
+                    livro.Classificacao = mediaFinal;
+                    _livroService.Edit(livro);
                 }
             }
             catch(Exception e)
