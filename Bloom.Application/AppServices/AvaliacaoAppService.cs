@@ -58,7 +58,7 @@ namespace Bloom.Application.AppServices
                     List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoLivroId(livro.Id);
                     if(notas.Count > 1)
                     {
-                        AtualizarClassificacao((Guid)novaAvaliacao.LivroId);
+                        AtualizarClassificacao((Guid)novaAvaliacao.Id);
                     };
 
                     resposta.Resultado = "Sua avaliação de livro foi adicionada";
@@ -87,7 +87,7 @@ namespace Bloom.Application.AppServices
                     List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoFilmesId(filme.Id);
                     if (notas.Count > 1)
                     {
-                        AtualizarClassificacao((Guid)novaAvaliacao.FilmeId);
+                        AtualizarClassificacao((Guid)novaAvaliacao.Id);
                     };
 
                     resposta.Resultado = "Sua avaliação de filme foi adicionada";
@@ -116,7 +116,7 @@ namespace Bloom.Application.AppServices
                     List<Avaliacao> notas = _avaliacaoService.GetAvaliacaoFilmesId(serie.Id);
                     if (notas.Count > 1)
                     {
-                        AtualizarClassificacao((Guid)novaAvaliacao.SerieId);
+                        AtualizarClassificacao((Guid)novaAvaliacao.Id);
                     };
                     resposta.Resultado = "Sua avaliação de serie foi adicionada";
                     resposta.Sucesso = true;
