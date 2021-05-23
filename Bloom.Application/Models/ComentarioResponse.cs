@@ -8,5 +8,7 @@ namespace Bloom.Application.Models
     {
         public string Username { get; set; }
         public string Texto { get; set; }
+
+        public string id { get; set; }
     }
 }

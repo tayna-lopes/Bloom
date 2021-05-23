@@ -10,7 +10,7 @@ namespace Bloom.Application.AppServicesInterfaces
     {
         ResponseUtil ComentarioAvaliacao(NovoComentarioModel model);
         ResponseUtil EditarComentario(EditarComentarioModel model);
-        ResponseUtil DeletarComentario(DeletarComentarioModel model);
+        ResponseUtil DeletarComentario(string model);
         ResponseUtil GetComentariosByAvaliacaoId(Guid AvaliacaoId);
     }
 }

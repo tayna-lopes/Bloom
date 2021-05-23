@@ -64,7 +64,7 @@ namespace Bloom.Controllers
         /// <response code="400">Corpo da requisição inválido</response>  
         [HttpDelete]
         [Route("DeletarComentario")]
-        public IActionResult DeletarComentario([FromBody] DeletarComentarioModel model)
+        public IActionResult DeletarComentario(string model)
         {
             var resposta = _comentarioAppService.DeletarComentario(model);
             if (resposta.Sucesso)

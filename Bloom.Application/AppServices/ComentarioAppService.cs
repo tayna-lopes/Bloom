@@ -90,18 +90,13 @@ namespace Bloom.Application.AppServices
             }
             return resposta;
         }
-        public ResponseUtil DeletarComentario(DeletarComentarioModel model)
+        public ResponseUtil DeletarComentario(string model)
         {
             var resposta = new ResponseUtil();
             try
             {
-                Comentario comentario = _comentarioService.GetById(model.ComentarioId);
-                if (model.UsuarioId != comentario.UsuarioId)
-                {
-                    resposta.Resultado = "Este usuário não tem permissão para deletar o comentario";
-                    resposta.Sucesso = false;
-                    return resposta;
-                }
+                Comentario comentario = _comentarioService.GetById(Guid.Parse(model));
+
                 if (comentario != null)
                 {
                     _comentarioService.Remove(comentario);
@@ -128,7 +123,8 @@ namespace Bloom.Application.AppServices
                    ComentarioResponse comentario = new ComentarioResponse
                    {
                        Texto = x.Texto,
-                       Username = x.Usuario.Username
+                       Username = x.Usuario.Username,
+                       id = x.Id.ToString()
                    };
                    listComentarios.Add(comentario);
                });
