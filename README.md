@@ -10,8 +10,11 @@ Hex é um sistema de recomendação para Filmes, Séries e Livros, capaz de perm
 
 ## Tecnologia usada
 ````
- .Net Core 3.1
- Linguagem C#
+ Framework: .Net Core 3.1
+ Linguagem: C#
+ Banco de dados: Instancia de SQL Server no Azure
+ Maquina Virtual: Azure
+ Hosteamento do site: IIS
  ````
 
 
