@@ -7,6 +7,7 @@ Hex é um sistema de recomendação para Filmes, Séries e Livros, capaz de perm
 
 - [Google Drive](https://docs.google.com/document/d/1Y9OBStxLhUFeLMSjVm-x5jwOv0K-fd4m/edit?usp=drive_web&ouid=114800239921516594749&rtpof=true) - Plano de testes do back-end
 - [Hex API](http://hexapi.brazilsouth.cloudapp.azure.com/index.html) - Link do site
+- [Youtube](https://www.youtube.com/watch?v=XoKCgFDpdOg&ab_channel=Bloom%E2%84%A2) - Apresentação do sistema no youtube
 
 ## Tecnologia usada
 ````
