@@ -6,7 +6,7 @@ Considerando que os serviços de streaming nunca estiveram tão em alta graças 
 Hex é um sistema de recomendação para Filmes, Séries e Livros, capaz de permitir acesso e participação dos usuários, de modo a prover interação com contribuições na forma de dicas e recomendações sobre filmes, séries e livros. 
 
 - [Google Drive](https://docs.google.com/document/d/1Y9OBStxLhUFeLMSjVm-x5jwOv0K-fd4m/edit?usp=drive_web&ouid=114800239921516594749&rtpof=true) - Plano de testes do back-end
-- [Hex API](http://hexapi.brazilsouth.cloudapp.azure.com/index.html) - Link do site
+- [Hex API](https://hexapi.brazilsouth.cloudapp.azure.com/index.html) - Link do site
 - [Youtube](https://www.youtube.com/watch?v=XoKCgFDpdOg&ab_channel=Bloom%E2%84%A2) - Apresentação do sistema no youtube
 
 ## Tecnologia usada
